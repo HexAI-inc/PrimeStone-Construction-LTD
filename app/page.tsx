@@ -18,6 +18,7 @@ import {
 } from "lucide-react"
 import AnimatedSection from "@/components/AnimatedSection"
 import StaggeredContainer from "@/components/StaggeredContainer"
+import FlipCard from "@/components/FlipCard"
 
 export default function HomePage() {
   const services = [
@@ -25,31 +26,37 @@ export default function HomePage() {
       icon: <Home className="w-12 h-12 text-orange-800" />,
       title: "Residential Construction",
       description: "Custom homes and residential developments built to the highest standards with modern design.",
+      stats: { projects: "200+", rating: "5.0★", time: "On-time" },
     },
     {
       icon: <Building2 className="w-12 h-12 text-orange-800" />,
       title: "Commercial Construction",
       description: "Office buildings, retail spaces, and commercial complexes for businesses of all sizes.",
+      stats: { projects: "150+", rating: "4.9★", time: "Fast" },
     },
     {
       icon: <Wrench className="w-12 h-12 text-orange-800" />,
       title: "Renovations",
       description: "Transform existing spaces with our expert renovation and remodeling services.",
+      stats: { projects: "100+", rating: "5.0★", time: "Flexible" },
     },
     {
       icon: <Road className="w-12 h-12 text-orange-800" />,
       title: "Civil Engineering",
       description: "Infrastructure projects including roads, bridges, and utility systems development.",
+      stats: { projects: "50+", rating: "5.0★", time: "Reliable" },
     },
     {
       icon: <MapPin className="w-12 h-12 text-orange-800" />,
       title: "Site Development",
       description: "Land preparation and site development services for construction projects.",
+      stats: { projects: "80+", rating: "4.8★", time: "Efficient" },
     },
     {
       icon: <Hammer className="w-12 h-12 text-orange-800" />,
       title: "Custom Builds",
       description: "Unique architectural projects tailored to your specific needs and vision.",
+      stats: { projects: "30+", rating: "5.0★", time: "Premium" },
     },
   ]
 
@@ -113,24 +120,28 @@ export default function HomePage() {
       image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop",
       category: "Residential",
       location: "Kololi",
+      details: { units: "24 Units", amenities: "Pool & Gym", features: "Solar Power" },
     },
     {
       title: "Modern Office Building",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
       category: "Commercial",
       location: "Banjul",
+      details: { floors: "15 Floors", parking: "200 Cars", certification: "Green Building" },
     },
     {
       title: "Infrastructure Development",
       image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop",
       category: "Civil Engineering",
       location: "Coastal Region",
+      details: { length: "25km Highway", bridges: "3 Bridges", lighting: "LED Systems" },
     },
     {
       title: "Heritage Villa Restoration",
       image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
       category: "Renovation",
       location: "Bakau",
+      details: { heritage: "Colonial Era", modern: "Smart Home", garden: "Restored Gardens" },
     },
   ]
 
@@ -177,20 +188,14 @@ export default function HomePage() {
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center bg-gradient-to-r from-orange-800 to-orange-700 hover:from-orange-900 hover:to-orange-800 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl text-lg"
-                  >
-                    Get Free Quote
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                  <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                    <span className="mr-2">Get Free Quote</span>
+                    <ArrowRight className="w-5 h-5" />
                   </Link>
                 </motion.div>
 
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/projects"
-                    className="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-blue-900 font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-lg"
-                  >
+                  <Link href="/projects" className="btn-secondary text-lg px-8 py-4">
                     View Projects
                   </Link>
                 </motion.div>
@@ -221,15 +226,37 @@ export default function HomePage() {
                     hidden: { y: 50, opacity: 0 },
                     visible: { y: 0, opacity: 1 },
                   }}
-                  whileHover={{
-                    y: -8,
-                    transition: { duration: 0.3 },
-                  }}
-                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="h-80"
                 >
-                  <div className="mb-6">{service.icon}</div>
-                  <h3 className="text-xl font-semibold text-blue-900 mb-4">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  <FlipCard
+                    frontContent={
+                      <div className="bg-white p-8 rounded-2xl shadow-lg h-full flex flex-col justify-center border border-gray-100">
+                        <div className="mb-6">{service.icon}</div>
+                        <h3 className="text-xl font-semibold text-blue-900 mb-4">{service.title}</h3>
+                        <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                      </div>
+                    }
+                    backContent={
+                      <div className="bg-gradient-to-br from-blue-900 to-orange-800 text-white p-8 rounded-2xl shadow-lg h-full flex flex-col justify-center">
+                        <h3 className="text-xl font-semibold mb-6 text-center">{service.title}</h3>
+                        <div className="space-y-4">
+                          <div className="text-center">
+                            <div className="text-2xl font-bold text-orange-300">{service.stats.projects}</div>
+                            <div className="text-sm text-blue-100">Projects</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-2xl font-bold text-orange-300">{service.stats.rating}</div>
+                            <div className="text-sm text-blue-100">Rating</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-orange-300">{service.stats.time}</div>
+                            <div className="text-sm text-blue-100">Delivery</div>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                    className="w-full h-full"
+                  />
                 </motion.div>
               ))}
             </div>
@@ -323,32 +350,44 @@ export default function HomePage() {
                     hidden: { y: 50, opacity: 0 },
                     visible: { y: 0, opacity: 1 },
                   }}
-                  whileHover={{
-                    y: -12,
-                    transition: { duration: 0.3 },
-                  }}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer h-80"
                 >
-                  <div className="relative overflow-hidden rounded-xl shadow-lg">
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-64 object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-orange-800 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {project.category}
-                      </span>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <div className="font-semibold text-lg mb-1">{project.title}</div>
-                        <div className="text-sm opacity-90">📍 {project.location}</div>
+                  <FlipCard
+                    frontContent={
+                      <div className="relative overflow-hidden rounded-xl shadow-lg h-full">
+                        <img
+                          src={project.image || "/placeholder.svg"}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-orange-800 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            {project.category}
+                          </span>
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
+                          <div className="absolute bottom-4 left-4 text-white">
+                            <div className="font-semibold text-lg mb-1">{project.title}</div>
+                            <div className="text-sm opacity-90">📍 {project.location}</div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    }
+                    backContent={
+                      <div className="bg-gradient-to-br from-blue-900 to-orange-800 text-white p-6 rounded-xl shadow-lg h-full flex flex-col justify-center">
+                        <h3 className="text-lg font-semibold mb-4 text-center">{project.title}</h3>
+                        <div className="space-y-3">
+                          {Object.entries(project.details).map(([key, value], idx) => (
+                            <div key={idx} className="text-center">
+                              <div className="text-orange-300 font-semibold">{value}</div>
+                              <div className="text-blue-100 text-sm capitalize">{key}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    }
+                    className="w-full h-full"
+                  />
                 </motion.div>
               ))}
             </div>
@@ -357,12 +396,9 @@ export default function HomePage() {
           <AnimatedSection direction="up" delay={0.3}>
             <div className="text-center mt-12">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="/projects"
-                  className="inline-flex items-center bg-gradient-to-r from-orange-800 to-orange-700 hover:from-orange-900 hover:to-orange-800 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  View All Projects
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                <Link href="/projects" className="btn-primary px-8 py-3">
+                  <span className="mr-2">View All Projects</span>
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
             </div>
@@ -390,10 +426,6 @@ export default function HomePage() {
                   variants={{
                     hidden: { y: 50, opacity: 0 },
                     visible: { y: 0, opacity: 1 },
-                  }}
-                  whileHover={{
-                    y: -8,
-                    transition: { duration: 0.3 },
                   }}
                   className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
@@ -433,19 +465,13 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center bg-gradient-to-r from-orange-800 to-orange-700 hover:from-orange-900 hover:to-orange-800 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl text-lg"
-                >
-                  Get Free Quote
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                  <span className="mr-2">Get Free Quote</span>
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="tel:+2201234567"
-                  className="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-blue-900 font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-lg"
-                >
+                <Link href="tel:+2201234567" className="btn-secondary text-lg px-8 py-4">
                   Call: +220 123 4567
                 </Link>
               </motion.div>

@@ -38,6 +38,19 @@
 
   body {
     font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: none;
+  }
+
+  * {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: none;
   }
 }
 
@@ -64,15 +77,32 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-orange-800 to-orange-700 hover:from-orange-900 hover:to-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center justify-center whitespace-nowrap;
   }
 
   .btn-secondary {
-    @apply border-2 border-white text-white hover:bg-white hover:text-blue-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300;
+    @apply border-2 border-white text-white hover:bg-white hover:text-blue-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center justify-center whitespace-nowrap;
   }
 
   .card-hover {
     @apply hover:shadow-xl hover:-translate-y-2 transition-all duration-300;
+  }
+
+  /* 3D Card Effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
   }
 }
 

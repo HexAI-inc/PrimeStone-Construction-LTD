@@ -1,6 +1,7 @@
 import { Home, Building2, Wrench, RouteIcon as Road, MapPin, Hammer, ArrowRight, CheckCircle } from "lucide-react"
 import Link from "next/link"
 import AnimatedSection from "@/components/AnimatedSection"
+import FlipCard from "@/components/FlipCard"
 
 export default function ServicesPage() {
   const services = [
@@ -16,6 +17,7 @@ export default function ServicesPage() {
         "Interior finishing and design",
       ],
       image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop",
+      stats: { projects: "200+", satisfaction: "100%", timeline: "On-time" },
     },
     {
       icon: <Building2 className="w-12 h-12 text-orange-800" />,
@@ -29,6 +31,7 @@ export default function ServicesPage() {
         "Mixed-use developments",
       ],
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
+      stats: { projects: "150+", satisfaction: "98%", timeline: "Fast" },
     },
     {
       icon: <Wrench className="w-12 h-12 text-orange-800" />,
@@ -42,6 +45,7 @@ export default function ServicesPage() {
         "Historic building restoration",
       ],
       image: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&h=600&fit=crop",
+      stats: { projects: "100+", satisfaction: "99%", timeline: "Flexible" },
     },
     {
       icon: <Road className="w-12 h-12 text-orange-800" />,
@@ -55,6 +59,7 @@ export default function ServicesPage() {
         "Public facility construction",
       ],
       image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop",
+      stats: { projects: "50+", satisfaction: "100%", timeline: "Reliable" },
     },
     {
       icon: <MapPin className="w-12 h-12 text-orange-800" />,
@@ -68,6 +73,7 @@ export default function ServicesPage() {
         "Landscaping and finishing",
       ],
       image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop",
+      stats: { projects: "80+", satisfaction: "97%", timeline: "Efficient" },
     },
     {
       icon: <Hammer className="w-12 h-12 text-orange-800" />,
@@ -81,6 +87,7 @@ export default function ServicesPage() {
         "Project management and coordination",
       ],
       image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
+      stats: { projects: "30+", satisfaction: "100%", timeline: "Premium" },
     },
   ]
 
@@ -130,16 +137,40 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/contact" className="btn-primary">
-                      Get Quote for This Service
-                      <ArrowRight className="ml-2 w-5 h-5" />
+                    <Link href="/contact" className="btn-primary text-sm sm:text-base px-4 sm:px-6">
+                      <span className="mr-2">Get Quote for This Service</span>
+                      <ArrowRight className="w-4 h-4 flex-shrink-0" />
                     </Link>
                   </div>
-                  <div className={index % 2 === 1 ? "lg:col-start-1" : ""}>
-                    <img
-                      src={service.image || "/placeholder.svg"}
-                      alt={service.title}
-                      className="w-full h-80 object-cover rounded-xl shadow-lg"
+                  <div className={`${index % 2 === 1 ? "lg:col-start-1" : ""} h-80`}>
+                    <FlipCard
+                      frontContent={
+                        <img
+                          src={service.image || "/placeholder.svg"}
+                          alt={service.title}
+                          className="w-full h-full object-cover rounded-xl shadow-lg"
+                        />
+                      }
+                      backContent={
+                        <div className="w-full h-full bg-gradient-to-br from-blue-900 to-orange-800 rounded-xl shadow-lg p-6 flex flex-col justify-center text-white">
+                          <h4 className="text-xl font-bold mb-4 text-center">Service Statistics</h4>
+                          <div className="space-y-4">
+                            <div className="text-center">
+                              <div className="text-2xl font-bold text-orange-300">{service.stats.projects}</div>
+                              <div className="text-sm text-blue-100">Projects Completed</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="text-2xl font-bold text-orange-300">{service.stats.satisfaction}</div>
+                              <div className="text-sm text-blue-100">Client Satisfaction</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="text-lg font-bold text-orange-300">{service.stats.timeline}</div>
+                              <div className="text-sm text-blue-100">Delivery</div>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                      className="w-full h-full"
                     />
                   </div>
                 </div>
@@ -165,29 +196,47 @@ export default function ServicesPage() {
                 step: "01",
                 title: "Consultation",
                 description: "Initial meeting to understand your needs, budget, and timeline",
+                details: "Free consultation with detailed project assessment and cost estimation",
               },
               {
                 step: "02",
                 title: "Planning & Design",
                 description: "Detailed project planning, design development, and permit acquisition",
+                details: "3D modeling, architectural drawings, and all necessary permits handled",
               },
               {
                 step: "03",
                 title: "Construction",
                 description: "Professional execution with regular updates and quality control",
+                details: "Daily progress reports, quality inspections, and safety protocols",
               },
               {
                 step: "04",
                 title: "Completion",
                 description: "Final inspection, handover, and ongoing support services",
+                details: "Final walkthrough, warranty coverage, and maintenance support",
               },
             ].map((process, index) => (
-              <AnimatedSection key={index} animation="fade-in" className="text-center">
-                <div className="bg-orange-800 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                  {process.step}
-                </div>
-                <h3 className="text-xl font-semibold text-blue-900 mb-4">{process.title}</h3>
-                <p className="text-gray-600">{process.description}</p>
+              <AnimatedSection key={index} animation="fade-in" className="text-center h-64">
+                <FlipCard
+                  frontContent={
+                    <div className="bg-white p-6 rounded-xl shadow-lg h-full flex flex-col justify-center">
+                      <div className="bg-orange-800 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+                        {process.step}
+                      </div>
+                      <h3 className="text-xl font-semibold text-blue-900 mb-4">{process.title}</h3>
+                      <p className="text-gray-600">{process.description}</p>
+                    </div>
+                  }
+                  backContent={
+                    <div className="bg-gradient-to-br from-blue-900 to-orange-800 text-white p-6 rounded-xl shadow-lg h-full flex flex-col justify-center">
+                      <div className="text-orange-300 text-3xl font-bold mb-4">{process.step}</div>
+                      <h3 className="text-lg font-semibold mb-4">{process.title}</h3>
+                      <p className="text-blue-100 text-sm leading-relaxed">{process.details}</p>
+                    </div>
+                  }
+                  className="w-full h-full"
+                />
               </AnimatedSection>
             ))}
           </div>
@@ -204,8 +253,8 @@ export default function ServicesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn-primary text-lg px-8 py-4">
-                Get Free Consultation
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <span className="mr-2">Get Free Consultation</span>
+                <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="/projects" className="btn-secondary text-lg px-8 py-4">
                 View Our Work

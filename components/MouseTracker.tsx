@@ -5,24 +5,34 @@ import { motion } from "framer-motion"
 
 export default function MouseTracker() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
+      setIsVisible(true)
+    }
+
+    const handleMouseLeave = () => {
+      setIsVisible(false)
     }
 
     window.addEventListener("mousemove", updateMousePosition)
+    document.addEventListener("mouseleave", handleMouseLeave)
 
     return () => {
       window.removeEventListener("mousemove", updateMousePosition)
+      document.removeEventListener("mouseleave", handleMouseLeave)
     }
   }, [])
+
+  if (!isVisible) return null
 
   return (
     <>
       {/* Main cursor follower */}
       <motion.div
-        className="fixed top-0 left-0 w-6 h-6 bg-orange-400 rounded-full pointer-events-none z-50 mix-blend-difference"
+        className="fixed top-0 left-0 w-6 h-6 bg-orange-800 rounded-full pointer-events-none z-50 mix-blend-difference"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
@@ -36,7 +46,7 @@ export default function MouseTracker() {
 
       {/* Secondary cursor follower */}
       <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border-2 border-orange-400 rounded-full pointer-events-none z-40 opacity-50"
+        className="fixed top-0 left-0 w-12 h-12 border-2 border-orange-800 rounded-full pointer-events-none z-40 opacity-50"
         animate={{
           x: mousePosition.x - 24,
           y: mousePosition.y - 24,
