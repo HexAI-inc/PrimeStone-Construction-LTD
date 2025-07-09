@@ -137,7 +137,7 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/contact" className="btn-primary text-sm sm:text-base px-4 sm:px-6">
+                    <Link href="/quote" className="btn-primary text-sm sm:text-base px-4 sm:px-6">
                       <span className="mr-2">Get Quote for This Service</span>
                       <ArrowRight className="w-4 h-4 flex-shrink-0" />
                     </Link>
