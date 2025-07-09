@@ -74,10 +74,15 @@ export default function Navigation() {
                 <Image
                   src="/images/primestone-logo.png"
                   alt="Primestone Construction"
-                  width={180}
-                  height={60}
-                  className="h-12 w-auto"
+                  width={160}
+                  height={45}
+                  className="h-8 sm:h-9 lg:h-10 w-auto object-cover"
                   priority
+                  style={{
+                    maxWidth: "160px",
+                    height: "auto",
+                    objectPosition: "center",
+                  }}
                 />
               </Link>
             </motion.div>
