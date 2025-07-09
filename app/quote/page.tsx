@@ -61,10 +61,11 @@ export default function QuotePage() {
   ]
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
   }
 
   const handleCheckboxChange = (value: string, field: "features" | "additionalServices") => {
@@ -79,9 +80,8 @@ export default function QuotePage() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission here
     console.log("Quote request submitted:", formData)
     alert("Thank you for your quote request! We will contact you within 24 hours with a detailed proposal.")
   }
@@ -102,7 +102,7 @@ export default function QuotePage() {
   ]
 
   return (
-    <div>
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient text-white py-16">
         <div className="container mx-auto px-4">

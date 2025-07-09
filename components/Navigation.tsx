@@ -73,15 +73,14 @@ export default function Navigation() {
               <Link href="/" className="flex items-center">
                 <Image
                   src="/images/primestone-logo.png"
-                  alt="Primestone Construction"
-                  width={160}
-                  height={45}
-                  className="h-8 sm:h-9 lg:h-10 w-auto object-cover"
+                  alt="PrimeStone Construction Company Ltd."
+                  width={220}
+                  height={65}
+                  className="h-10 sm:h-12 lg:h-14 w-auto object-contain drop-shadow-sm"
                   priority
                   style={{
-                    maxWidth: "160px",
+                    maxWidth: "240px",
                     height: "auto",
-                    objectPosition: "center",
                   }}
                 />
               </Link>

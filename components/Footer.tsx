@@ -31,10 +31,10 @@ export default function Footer() {
               <div className="mb-6">
                 <Image
                   src="/images/primestone-logo.png"
-                  alt="Primestone Construction"
+                  alt="PrimeStone Construction Company Ltd."
                   width={200}
-                  height={80}
-                  className="h-16 w-auto brightness-0 invert"
+                  height={60}
+                  className="h-12 w-auto brightness-0 invert"
                 />
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
