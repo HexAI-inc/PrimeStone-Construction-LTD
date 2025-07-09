@@ -25,6 +25,7 @@ export default function Navigation() {
     { href: "/projects", label: "Projects" },
     { href: "/team", label: "Team" },
     { href: "/contact", label: "Contact" },
+    { href: "/quote", label: "Quote" },
   ]
 
   return (
@@ -102,7 +103,7 @@ export default function Navigation() {
               ))}
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
-                  href="/contact"
+                  href="/quote"
                   className="bg-gradient-to-r from-orange-800 to-orange-700 hover:from-orange-900 hover:to-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Get Quote
