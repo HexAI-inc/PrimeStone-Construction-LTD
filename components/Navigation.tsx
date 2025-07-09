@@ -25,7 +25,6 @@ export default function Navigation() {
     { href: "/projects", label: "Projects" },
     { href: "/team", label: "Team" },
     { href: "/contact", label: "Contact" },
-    { href: "/quote", label: "Quote" },
   ]
 
   return (
