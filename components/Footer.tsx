@@ -101,9 +101,9 @@ export default function Footer() {
               <h3 className="font-semibold text-xl mb-6">Contact Information</h3>
               <div className="space-y-4">
                 {[
-                  { icon: MapPin, text: "123 Independence Drive, Banjul, The Gambia" },
-                  { icon: Phone, text: "+220 123 4567" },
-                  { icon: Mail, text: "info@primestone.gm" },
+                  { icon: MapPin, text: "Turntable, Brusubi, The Gambia" },
+                  { icon: Phone, text: "+220 363 6351" },
+                  { icon: Mail, text: "PrimeStonecompany@gmail.com" },
                   { icon: Clock, text: "Mon - Fri: 8:00 AM - 6:00 PM" },
                 ].map((item, index) => (
                   <motion.div key={index} whileHover={{ x: 5 }} className="flex items-center space-x-3">
@@ -117,7 +117,8 @@ export default function Footer() {
 
           <div className="border-t border-blue-800 mt-12 pt-8 text-center">
             <motion.p variants={itemVariants} className="text-gray-400">
-              © 2024 Primestone Construction Company Ltd. All rights reserved.
+              © 2025 Primestone Construction Company Ltd. All rights reserved.
+              Developed by HexAI
             </motion.p>
           </div>
         </motion.div>
