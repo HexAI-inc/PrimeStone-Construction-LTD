@@ -11,23 +11,23 @@ export default function TeamPage() {
   const teamMembers = [
     {
       id: 1,
-      name: "Ousman Jatta",
+      name: "Oumie Hairy Jaye",
       role: "Founder & CEO",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-      bio: "With over 20 years of experience in the construction industry, Ousman founded Primestone Construction with a vision to bring international standards to The Gambia.",
+      bio: "With over 15 years of experience in the construction industry, Hairy founded Primestone Construction with a vision to bring international standards to The Gambia.",
       expertise: ["Strategic Planning", "Project Management", "Business Development"],
       education: "MBA in Construction Management",
-      experience: "20+ Years",
-      projects: "200+ Projects Led",
+      experience: "15+ Years",
+      projects: "50+ Projects Led",
       achievements: [
-        "Founded Primestone Construction in 2010",
+        "Founded Primestone Construction in 2021",
         "Led expansion to 50+ team members",
         "Achieved ISO 9001:2015 certification",
-        "Best CEO Award - Construction Industry 2023",
+        
       ],
       contact: {
-        email: "ousman@primestone.gm",
-        phone: "+220 123 4567",
+        email: "hairy@primestone.gm",
+        phone: "+220 363 6351",
         linkedin: "#",
       },
       quote: "Building excellence isn't just about structures; it's about building trust and relationships.",
