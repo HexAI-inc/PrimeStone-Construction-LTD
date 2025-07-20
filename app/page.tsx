@@ -465,14 +465,14 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                <Link href="/quote" className="btn-primary text-lg px-8 py-4">
                   <span className="mr-2">Get Free Quote</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="tel:+2201234567" className="btn-secondary text-lg px-8 py-4">
-                  Call: +220 123 4567
+                <Link href="tel:+2203636351" className="btn-secondary text-lg px-8 py-4">
+                  Call: +220 363 6351
                 </Link>
               </motion.div>
             </div>
