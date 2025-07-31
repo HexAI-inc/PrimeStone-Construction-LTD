@@ -84,6 +84,7 @@ export default function QuotePage() {
     e.preventDefault()
     console.log("Quote request submitted:", formData)
     alert("Thank you for your quote request! We will contact you within 24 hours with a detailed proposal.")
+    
   }
 
   const nextStep = () => {
@@ -287,7 +288,8 @@ export default function QuotePage() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Timeline</label>
-                      <select
+                      <select 
+                        title="timeline"
                         name="timeline"
                         value={formData.timeline}
                         onChange={handleInputChange}
@@ -407,6 +409,8 @@ export default function QuotePage() {
                       </div>
                     )}
                   </div>
+                  
+                  
 
                   <div className="bg-blue-50 p-6 rounded-lg mb-8">
                     <h3 className="font-semibold text-blue-900 mb-4">What Happens Next?</h3>
@@ -474,8 +478,8 @@ export default function QuotePage() {
                 <Phone className="w-6 h-6 text-orange-800" />
                 <div>
                   <div className="font-semibold text-gray-900">Call Us</div>
-                  <a href="tel:+2201234567" className="text-orange-800 hover:text-orange-900">
-                    +220 123 4567
+                  <a href="tel:+2203636351" className="text-orange-800 hover:text-orange-900">
+                    +220 363 6351
                   </a>
                 </div>
               </div>
@@ -484,7 +488,7 @@ export default function QuotePage() {
                 <div>
                   <div className="font-semibold text-gray-900">Email Us</div>
                   <a href="mailto:quotes@primestone.gm" className="text-orange-800 hover:text-orange-900">
-                    quotes@primestone.gm
+                    quotes@primestonescontruction.com
                   </a>
                 </div>
               </div>

@@ -103,7 +103,7 @@ export default function Footer() {
                 {[
                   { icon: MapPin, text: "Turntable, Brusubi, The Gambia" },
                   { icon: Phone, text: "+220 363 6351" },
-                  { icon: Mail, text: "PrimeStonecompany@gmail.com" },
+                  { icon: Mail, text: "info@primestonesconstruction.com" },
                   { icon: Clock, text: "Mon - Fri: 8:00 AM - 6:00 PM" },
                 ].map((item, index) => (
                   <motion.div key={index} whileHover={{ x: 5 }} className="flex items-center space-x-3">

@@ -41,19 +41,19 @@ export default function ContactPage() {
     {
       icon: <Phone className="w-6 h-6 text-orange-600" />,
       title: "Phone",
-      details: ["+220 123 4567", "+220 987 6543"],
-      action: "tel:+2201234567",
+      details: ["+220 363 6351", "+220 783 4351"],
+      action: "tel:+2203636351",
     },
     {
       icon: <Mail className="w-6 h-6 text-orange-600" />,
       title: "Email",
-      details: ["info@primestone.gm", "projects@primestone.gm"],
-      action: "mailto:info@primestone.gm",
+      details: ["info@primestonescontruction.com", "projects@primestonescontruction.com"],
+      action: "mailto:info@primestonescontruction.com",
     },
     {
       icon: <MapPin className="w-6 h-6 text-orange-600" />,
       title: "Address",
-      details: ["123 Independence Drive", "Banjul, The Gambia"],
+      details: ["Turntable", "Brusubi, The Gambia"],
       action: "#",
     },
     {
@@ -83,7 +83,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <AnimatedSection animation="slide-in-left">
+            <AnimatedSection direction="left" duration={ 2 }/*animation="slide-in-left"*/>
               <div className="bg-white p-8 rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold text-blue-900 mb-6">Send Us a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -182,7 +182,7 @@ export default function ContactPage() {
             </AnimatedSection>
 
             {/* Contact Information */}
-            <AnimatedSection animation="slide-in-right">
+            <AnimatedSection direction="right" duration={ 2 } /* animation="slide-in-right" */>
               <div className="space-y-8">
                 <div>
                   <h2 className="text-2xl font-bold text-blue-900 mb-6">Contact Information</h2>
@@ -239,7 +239,7 @@ export default function ContactPage() {
           <AnimatedSection className="text-center mb-12">
             <h2 className="text-3xl font-bold text-blue-900 mb-4">Visit Our Office</h2>
             <p className="text-xl text-gray-600">
-              Located in the heart of Banjul, we're easily accessible for consultations
+              Located in the heart of Brusubi, we're easily accessible for consultations
             </p>
           </AnimatedSection>
 
@@ -249,7 +249,7 @@ export default function ContactPage() {
                 <div className="text-center">
                   <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-600">Interactive map would be embedded here</p>
-                  <p className="text-sm text-gray-500 mt-2">123 Independence Drive, Banjul, The Gambia</p>
+                  <p className="text-sm text-gray-500 mt-2">Turntable, Brusubi, The Gambia</p>
                 </div>
               </div>
             </div>
@@ -264,11 +264,11 @@ export default function ContactPage() {
             <h3 className="text-xl font-bold text-red-800 mb-2">Emergency Construction Services</h3>
             <p className="text-red-700 mb-4">For urgent construction emergencies, call our 24/7 hotline</p>
             <a
-              href="tel:+220999888777"
+              href="tel:+2203636351"
               className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
             >
               <Phone className="w-5 h-5 mr-2" />
-              Emergency: +220 999 888 777
+              Emergency: +220 363 6351
             </a>
           </AnimatedSection>
         </div>

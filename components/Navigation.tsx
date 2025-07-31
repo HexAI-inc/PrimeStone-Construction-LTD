@@ -40,16 +40,16 @@ export default function Navigation() {
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <Phone size={14} />
-                <span className="text-sm">+220 123 4567</span>
+                <span className="text-sm">+220 363 6351</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={14} />
-                <span className="text-sm">info@primestone.gm</span>
+                <span className="text-sm">info@primestonesconstruction.com</span>
               </div>
             </div>
             <div className="hidden md:block">
               <span className="text-sm bg-orange-800 bg-opacity-30 text-orange-300 px-3 py-1 rounded-full">
-                Building Excellence Since 2010
+                Building Excellence Since 2020
               </span>
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function Navigation() {
               ))}
               <div className="mt-4">
                 <Link
-                  href="/contact"
+                  href="/quote"
                   className="block text-center bg-gradient-to-r from-orange-800 to-orange-700 text-white font-semibold py-3 px-6 rounded-lg"
                   onClick={() => setIsOpen(false)}
                 >
