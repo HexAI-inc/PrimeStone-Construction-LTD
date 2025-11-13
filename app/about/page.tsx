@@ -13,7 +13,6 @@ import {
 } from "@mui/icons-material";
 import AnimatedSection from "@/components/AnimatedSection";
 import BackgroundElements from "@/components/BackgroundElements";
-import MouseTracker from "@/components/MouseTracker";
 import FlipCard from "@/components/FlipCard";
 
 export default function AboutPage() {
@@ -112,8 +111,6 @@ export default function AboutPage() {
 
   return (
     <div className="relative">
-      <MouseTracker />
-
       {/* Hero Section */}
       <section className="hero-gradient text-white min-h-screen flex items-center justify-center relative overflow-hidden">
         <BackgroundElements variant="blue" />

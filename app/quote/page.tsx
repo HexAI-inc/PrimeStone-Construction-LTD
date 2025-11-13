@@ -488,7 +488,7 @@ export default function QuotePage() {
                 <div>
                   <div className="font-semibold text-gray-900">Email Us</div>
                   <a href="mailto:quotes@primestone.gm" className="text-orange-800 hover:text-orange-900">
-                    quotes@primestonescontruction.com
+                    quotes@primestone.gm
                   </a>
                 </div>
               </div>

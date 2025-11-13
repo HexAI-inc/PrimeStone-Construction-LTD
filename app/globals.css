@@ -38,11 +38,11 @@
 
   body {
     font-feature-settings: "rlig" 1, "calt" 1;
-    cursor: none;
+    cursor: auto;
   }
 
   * {
-    cursor: none;
+    cursor: auto;
   }
 
   a,
@@ -50,7 +50,7 @@
   input,
   textarea,
   select {
-    cursor: none;
+    cursor: auto;
   }
 }
 

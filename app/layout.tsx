@@ -4,7 +4,6 @@ import { Poppins } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/Navigation"
 import Footer from "@/components/Footer"
-import MouseTracker from "@/components/MouseTracker"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={poppins.className}>
-        <MouseTracker />
         <Navigation />
         <main className="min-h-screen">{children}</main>
         <Footer />

@@ -44,7 +44,7 @@ export default function Navigation() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={14} />
-                <span className="text-sm">info@primestonesconstruction.com</span>
+                <span className="text-sm">info@primestone.gm</span>
               </div>
             </div>
             <div className="hidden md:block">

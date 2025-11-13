@@ -47,8 +47,8 @@ export default function ContactPage() {
     {
       icon: <Mail className="w-6 h-6 text-orange-600" />,
       title: "Email",
-      details: ["info@primestonescontruction.com", "projects@primestonescontruction.com"],
-      action: "mailto:info@primestonescontruction.com",
+      details: ["info@primestone.gm", "projects@primestone.gm"],
+      action: "mailto:info@primestone.gm",
     },
     {
       icon: <MapPin className="w-6 h-6 text-orange-600" />,
