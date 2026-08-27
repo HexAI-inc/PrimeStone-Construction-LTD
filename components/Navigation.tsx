@@ -1,162 +1,147 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
-import { Menu, X, Phone, Mail } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { COMPANY, buildWhatsAppUrl } from "@/lib/enquiry"
+import { NAV_LINKS } from "@/lib/panels"
 
+/**
+ * A single control in the top-right corner, and a menu that takes the whole
+ * screen. There is no persistent bar: the photography is the page, so the
+ * chrome stays out of it until asked for.
+ */
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
+  const pathname = usePathname()
+  const panelRef = useRef<HTMLDivElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+
+  const close = useCallback(() => setOpen(false), [])
+
+  // Route change closes the menu; without this it stays open over the new page.
+  useEffect(() => { setOpen(false) }, [pathname])
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    if (!open) return
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/projects", label: "Projects" },
-    { href: "/team", label: "Team" },
-    { href: "/contact", label: "Contact" },
-  ]
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setOpen(false); toggleRef.current?.focus(); return }
+      if (e.key !== "Tab") return
+      // Keep focus inside the overlay while it covers everything behind it.
+      const items = panelRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+      if (!items || items.length === 0) return
+      const first = items[0], last = items[items.length - 1]
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+    }
+
+    const { overflow } = document.body.style
+    document.body.style.overflow = "hidden"
+    document.addEventListener("keydown", onKey)
+    panelRef.current?.querySelector<HTMLElement>("a[href]")?.focus()
+
+    return () => {
+      document.body.style.overflow = overflow
+      document.removeEventListener("keydown", onKey)
+    }
+  }, [open])
 
   return (
     <>
-      {/* Top Bar */}
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="bg-blue-900 text-white py-2"
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <Phone size={14} />
-                <span className="text-sm">+220 363 6351</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail size={14} />
-                <span className="text-sm">info@primestone.gm</span>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <span className="text-sm bg-orange-800 bg-opacity-30 text-orange-300 px-3 py-1 rounded-full">
-                Building Excellence Since 2020
-              </span>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex items-start justify-between p-6 sm:p-8">
+        <Link
+          href="/"
+          className="pointer-events-auto rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+          aria-label="Primestone Construction — home"
+        >
+          <Image
+            src="/images/primestone-logo.png"
+            alt=""
+            width={200}
+            height={60}
+            priority
+            className="h-9 w-auto brightness-0 invert drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)] sm:h-11"
+          />
+        </Link>
 
-      {/* Main Navigation */}
-      <motion.nav
-        animate={{
-          backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 1)",
-          backdropFilter: isScrolled ? "blur(10px)" : "none",
-          boxShadow: isScrolled ? "0 4px 20px rgba(0, 0, 0, 0.1)" : "none",
-        }}
-        transition={{ duration: 0.3 }}
-        className="sticky top-0 z-50"
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            {/* Logo */}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/images/primestone-logo.png"
-                  alt="PrimeStone Construction Company Ltd."
-                  width={220}
-                  height={65}
-                  className="h-10 sm:h-12 lg:h-14 w-auto object-contain drop-shadow-sm"
-                  priority
-                  style={{
-                    maxWidth: "240px",
-                    height: "auto",
-                  }}
-                />
-              </Link>
-            </motion.div>
+        <button
+          ref={toggleRef}
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls="site-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="pointer-events-auto -m-2 flex h-12 w-12 flex-col items-center justify-center gap-[7px] rounded-sm p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          <span
+            className={`block h-[2px] w-8 bg-white shadow-[0_1px_6px_rgba(0,0,0,0.6)] transition-transform duration-300 ${open ? "translate-y-[4.5px] rotate-45" : ""}`}
+          />
+          <span
+            className={`block h-[2px] w-8 bg-white shadow-[0_1px_6px_rgba(0,0,0,0.6)] transition-transform duration-300 ${open ? "-translate-y-[4.5px] -rotate-45" : ""}`}
+          />
+        </button>
+      </header>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
+      <div
+        id="site-menu"
+        ref={panelRef}
+        aria-hidden={!open}
+        // `hidden` loses to Tailwind's `flex` (equal specificity, later source
+        // order), so the display toggle has to be a class.
+        className={`fixed inset-0 z-40 flex-col justify-between overflow-y-auto bg-[#0b0f14] px-6 pb-10 pt-28 sm:px-8 sm:pt-32 ${
+          open ? "flex" : "hidden"
+        }`}
+      >
+        <nav aria-label="Main">
+          <ul className="mx-auto w-full max-w-5xl">
+            {NAV_LINKS.map((link, i) => {
+              const active = pathname === link.href
+              return (
+                <li key={link.href} className="border-b border-white/10">
                   <Link
                     href={link.href}
-                    className="text-gray-700 hover:text-orange-800 font-medium transition-colors duration-200 relative group"
-                  >
-                    {link.label}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-800 transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="/quote"
-                  className="bg-gradient-to-r from-orange-800 to-orange-700 hover:from-orange-900 hover:to-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  Get Quote
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button className="md:hidden text-gray-700" onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden py-4 border-t"
-            >
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="block py-3 text-gray-700 hover:text-orange-800 font-medium transition-colors duration-200"
-                    onClick={() => setIsOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    style={{ transitionDelay: `${60 + i * 35}ms` }}
+                    className={`menu-item group block py-4 text-4xl font-semibold tracking-tight transition-colors sm:py-5 sm:text-6xl ${
+                      active ? "text-[#ff9d4d]" : "text-white hover:text-[#ff9d4d]"
+                    } focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff9d4d]`}
                   >
                     {link.label}
                   </Link>
-                </motion.div>
-              ))}
-              <div className="mt-4">
-                <Link
-                  href="/quote"
-                  className="block text-center bg-gradient-to-r from-orange-800 to-orange-700 text-white font-semibold py-3 px-6 rounded-lg"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get Quote
-                </Link>
-              </div>
-            </motion.div>
-          )}
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+
+        <div className="mx-auto mt-12 grid w-full max-w-5xl gap-8 text-sm text-white/70 sm:grid-cols-3">
+          <div>
+            <div className="mb-2 font-medium text-white">Talk to us</div>
+            <a href={buildWhatsAppUrl("Hello Primestone, I would like to ask about a project.")} target="_blank" rel="noopener noreferrer" className="block underline-offset-4 hover:text-[#ff9d4d] hover:underline">
+              WhatsApp {COMPANY.phonePrimary}
+            </a>
+            <a href={`tel:+${COMPANY.whatsappNumber}`} className="block underline-offset-4 hover:text-[#ff9d4d] hover:underline">
+              Call {COMPANY.phonePrimary}
+            </a>
+            <a href={`mailto:${COMPANY.emailGeneral}`} className="block underline-offset-4 hover:text-[#ff9d4d] hover:underline">
+              {COMPANY.emailGeneral}
+            </a>
+          </div>
+          <div>
+            <div className="mb-2 font-medium text-white">Find us</div>
+            <p>{COMPANY.address}</p>
+          </div>
+          <div>
+            <div className="mb-2 font-medium text-white">Opening hours</div>
+            {COMPANY.hours.map((h) => (
+              <p key={h.days}>{h.days}, {h.time}</p>
+            ))}
+            <p className="mt-1 text-white/50">All times {COMPANY.timezone}</p>
+          </div>
         </div>
-      </motion.nav>
+      </div>
     </>
   )
 }
