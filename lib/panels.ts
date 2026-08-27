@@ -78,6 +78,12 @@ export const PHOTO_CREDITS = [
   { file: "panel-process", title: "Brick factory", author: "Fatih Bilen", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/File:Brick_factory.jpg" },
   { file: "panel-people", title: "Moulding Bricks", author: "Susan565", licence: "CC0", licenceUrl: "https://creativecommons.org/publicdomain/zero/1.0/", source: "https://commons.wikimedia.org/wiki/File:Moulding_Bricks.jpg" },
   { file: "panel-place", title: "House in Serrekunda, Gambia", author: "Wolltanz", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/File:House_in_serrekunda_Gambia.jpg" },
+  { file: "panel-about", title: "Banjul", author: "Atamari", licence: "CC BY-SA 3.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/", source: "https://commons.wikimedia.org/wiki/File:Banjul_001_atamari.JPG" },
+  { file: "panel-services", title: "Building Under Construction in Awka", author: "Johnnybam", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/File:Building_Under_Construction_in_Awka.jpg" },
+  { file: "panel-projects", title: "Bamboo Scaffolding for Painting Work in Awka", author: "Johnnybam", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/File:Bamboo_Scaffolding_for_Painting_Work_in_Awka.jpg" },
+  { file: "panel-team", title: "Construction site workers in Embu, Kenya", author: "Mugambi Muriuki", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/Category:Construction_in_Kenya" },
+  { file: "panel-quote", title: "Construction site workers in Embu, Kenya", author: "Mugambi Muriuki", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/Category:Construction_in_Kenya" },
+  { file: "panel-contact", title: "Street in Banjul", author: "Demian", licence: "CC BY 2.0", licenceUrl: "https://creativecommons.org/licenses/by/2.0/", source: "https://commons.wikimedia.org/wiki/File:Street_in_Banjul_(3407998326).jpg" },
 ]
 
 export const NAV_LINKS = [

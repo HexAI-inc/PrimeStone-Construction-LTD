@@ -1,301 +1,141 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
-import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react"
-import AnimatedSection from "@/components/AnimatedSection"
+import ImagePanel from "@/components/ImagePanel"
+import SiteEnd from "@/components/SiteEnd"
 import { COMPANY, buildEnquiryMessage, buildWhatsAppUrl, openHandoff } from "@/lib/enquiry"
 
+const SERVICES: Record<string, string> = {
+  residential: "Residential construction",
+  commercial: "Commercial construction",
+  renovation: "Renovation and remodelling",
+  civil: "Civil engineering",
+  site: "Site development",
+  custom: "Custom build",
+}
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    message: "",
-  })
-
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", message: "" })
   const [sent, setSent] = useState(false)
-
-  const serviceLabels: Record<string, string> = {
-    residential: "Residential Construction",
-    commercial: "Commercial Construction",
-    renovation: "Renovations",
-    civil: "Civil Engineering",
-    site: "Site Development",
-    custom: "Custom Builds",
-  }
 
   // No backend exists, so the visitor carries their own message to WhatsApp.
   // Nothing here may promise a reply time — see PRODUCT.md.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const message = buildEnquiryMessage("Message from the Primestone website", [
-      { label: "Name", value: formData.name },
-      { label: "Email", value: formData.email },
-      { label: "Phone", value: formData.phone },
-      { label: "Service", value: serviceLabels[formData.service] ?? "" },
-      { label: "Details", value: formData.message },
-    ])
-    openHandoff(buildWhatsAppUrl(message))
+    openHandoff(
+      buildWhatsAppUrl(
+        buildEnquiryMessage("Message from the Primestone website", [
+          { label: "Name", value: formData.name },
+          { label: "Email", value: formData.email },
+          { label: "Phone", value: formData.phone },
+          { label: "Service", value: SERVICES[formData.service] ?? "" },
+          { label: "Details", value: formData.message },
+        ]),
+      ),
+    )
     setSent(true)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const contactInfo = [
-    {
-      icon: <Phone className="w-6 h-6 text-orange-600" />,
-      title: "Phone",
-      details: ["+220 363 6351", "+220 783 4351"],
-      action: "tel:+2203636351",
-    },
-    {
-      icon: <Mail className="w-6 h-6 text-orange-600" />,
-      title: "Email",
-      details: ["info@primestone.gm", "projects@primestone.gm"],
-      action: "mailto:info@primestone.gm",
-    },
-    {
-      icon: <MapPin className="w-6 h-6 text-orange-600" />,
-      title: "Address",
-      details: ["Turntable", "Brusubi, The Gambia"],
-      action: "#",
-    },
-    {
-      icon: <Clock className="w-6 h-6 text-orange-600" />,
-      title: "Business Hours",
-      details: ["Mon - Fri: 8:00 AM - 6:00 PM", "Sat: 9:00 AM - 4:00 PM"],
-      action: "#",
-    },
-  ]
+  const field =
+    "w-full rounded-lg border border-white/25 bg-white/[0.06] px-4 py-3 text-base text-white placeholder-white/45 transition focus:border-white/60 focus:outline-none focus:ring-2 focus:ring-[#ff9d4d]"
+  const label = "mb-2 block text-sm font-medium text-white/80"
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="hero-gradient text-white py-20">
-        <div className="container mx-auto px-4">
-          <AnimatedSection className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">Get In Touch</h1>
-            <p className="text-xl lg:text-2xl text-blue-100">
-              Ready to start your construction project? Contact us for a free consultation
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Contact Form & Info */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <AnimatedSection direction="left" duration={ 2 }/*animation="slide-in-left"*/>
-              <div className="bg-white p-8 rounded-xl shadow-lg">
-                <h2 className="text-2xl font-bold text-blue-900 mb-6">Send Us a Message</h2>
-                <p className="text-gray-600 mb-6">
-                  Your message opens in WhatsApp with these details filled in. It only reaches us once you press send
-                  there.
-                </p>
-                {sent && (
-                  <div role="status" className="mb-6 rounded-lg bg-green-50 border border-green-200 p-4 text-sm text-green-900">
-                    Your message is waiting in WhatsApp — press send there to deliver it. We read messages{" "}
-                    {COMPANY.hours[0].days} {COMPANY.hours[0].time} and {COMPANY.hours[1].days} {COMPANY.hours[1].time},{" "}
-                    {COMPANY.timezone}.
-                  </div>
-                )}
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition-all"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition-all"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition-all"
-                        placeholder="+220 123 4567"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                        Service Interested In
-                      </label>
-                      <select
-                        id="service"
-                        name="service"
-                        value={formData.service}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition-all"
-                      >
-                        <option value="">Select a service</option>
-                        <option value="residential">Residential Construction</option>
-                        <option value="commercial">Commercial Construction</option>
-                        <option value="renovation">Renovations</option>
-                        <option value="civil">Civil Engineering</option>
-                        <option value="site">Site Development</option>
-                        <option value="custom">Custom Builds</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Project Details *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition-all resize-none"
-                      placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
-                    ></textarea>
-                  </div>
-
-                  <button type="submit" className="w-full btn-primary text-lg py-4">
-                    Send on WhatsApp
-                    <Send className="ml-2 w-5 h-5" aria-hidden="true" />
-                  </button>
-                </form>
-              </div>
-            </AnimatedSection>
-
-            {/* Contact Information */}
-            <AnimatedSection direction="right" duration={ 2 } /* animation="slide-in-right" */>
-              <div className="space-y-8">
-                <div>
-                  <h2 className="text-2xl font-bold text-blue-900 mb-6">Contact Information</h2>
-                  <p className="text-gray-600 mb-8">
-                    Get in touch with us through any of the following methods. We're here to help with your construction
-                    needs.
-                  </p>
-                </div>
-
-                <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
-                      <div className="flex-shrink-0">{info.icon}</div>
-                      <div>
-                        <h3 className="font-semibold text-blue-900 mb-2">{info.title}</h3>
-                        {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-600">
-                            {detail}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* WhatsApp Contact */}
-                <div className="bg-green-50 border border-green-200 p-6 rounded-lg">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <MessageSquare className="w-6 h-6 text-green-600" />
-                    <h3 className="font-semibold text-green-800">WhatsApp Chat</h3>
-                  </div>
-                  <p className="text-green-700 mb-4">
-                    For quick questions and immediate responses, chat with us on WhatsApp.
-                  </p>
-                  <a
-                    href={buildWhatsAppUrl("Hello Primestone, I would like to ask about a project.")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-                  >
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Chat on WhatsApp
-                  </a>
-                </div>
-              </div>
-            </AnimatedSection>
+    <div className="bg-[#0b0f14]">
+      <ImagePanel
+        image="panel-contact"
+        position="50% 50%"
+        priority
+        size="hero"
+        heading={"Talk to a\nperson."}
+        body={`We are at ${COMPANY.address}. Message us any time — we read and reply during opening hours, ${COMPANY.timezone}.`}
+      >
+        <div className="mt-10 grid gap-8 sm:grid-cols-3">
+          <div>
+            <div className="text-sm uppercase tracking-widest text-white/55">Phone</div>
+            <a href={`tel:+${COMPANY.whatsappNumber}`} className="mt-1 block text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phonePrimary}</a>
+            <a href="tel:+2207834351" className="block text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phoneSecondary}</a>
+          </div>
+          <div>
+            <div className="text-sm uppercase tracking-widest text-white/55">Email</div>
+            <a href={`mailto:${COMPANY.emailGeneral}`} className="mt-1 block break-all text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.emailGeneral}</a>
+            <a href={`mailto:${COMPANY.emailProjects}`} className="block break-all text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.emailProjects}</a>
+          </div>
+          <div>
+            <div className="text-sm uppercase tracking-widest text-white/55">Open</div>
+            {COMPANY.hours.map((h) => (
+              <p key={h.days} className="mt-1 text-lg text-white/90">{h.days}, {h.time}</p>
+            ))}
+            <p className="text-white/60">All times {COMPANY.timezone}</p>
           </div>
         </div>
-      </section>
+      </ImagePanel>
 
-      {/* Map Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-blue-900 mb-4">Visit Our Office</h2>
-            <p className="text-xl text-gray-600">
-              Located in the heart of Brusubi, we're easily accessible for consultations
-            </p>
-          </AnimatedSection>
+      <section className="px-6 py-24 sm:px-8" aria-labelledby="send-heading">
+        <div className="mx-auto w-full max-w-3xl">
+          <h2 id="send-heading" className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-tight tracking-[-0.03em] text-white">
+            Send us a message
+          </h2>
+          <p className="mt-5 text-lg text-white/75">
+            Your message opens in WhatsApp with these details filled in. It only reaches us once you press send there.
+          </p>
 
-          <AnimatedSection>
-            <div className="bg-white p-4 rounded-xl shadow-lg">
-              <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Interactive map would be embedded here</p>
-                  <p className="text-sm text-gray-500 mt-2">Turntable, Brusubi, The Gambia</p>
-                </div>
+          {sent && (
+            <div role="status" className="mt-8 rounded-lg border border-[#ff9d4d]/40 bg-[#ff9d4d]/10 p-4 text-base text-white">
+              Your message is waiting in WhatsApp — press send there to deliver it. We read messages{" "}
+              {COMPANY.hours[0].days} {COMPANY.hours[0].time} and {COMPANY.hours[1].days} {COMPANY.hours[1].time},{" "}
+              {COMPANY.timezone}.
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="mt-10 space-y-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="min-w-0">
+                <label htmlFor="name" className={label}>Full name *</label>
+                <input id="name" name="name" value={formData.name} onChange={handleChange} required autoComplete="name" maxLength={120} className={field} placeholder="Your full name" />
+              </div>
+              <div className="min-w-0">
+                <label htmlFor="email" className={label}>Email address *</label>
+                <input id="email" type="email" name="email" value={formData.email} onChange={handleChange} required autoComplete="email" inputMode="email" maxLength={160} className={field} placeholder="you@example.com" />
+              </div>
+              <div className="min-w-0">
+                <label htmlFor="phone" className={label}>Phone or WhatsApp number</label>
+                <input id="phone" type="tel" name="phone" value={formData.phone} onChange={handleChange} autoComplete="tel" inputMode="tel" maxLength={32} className={field} placeholder="+220 363 6351" />
+              </div>
+              <div className="min-w-0">
+                <label htmlFor="service" className={label}>What is it about?</label>
+                <select id="service" name="service" value={formData.service} onChange={handleChange} className={field}>
+                  <option value="">Not sure yet</option>
+                  {Object.entries(SERVICES).map(([id, name]) => (
+                    <option key={id} value={id}>{name}</option>
+                  ))}
+                </select>
               </div>
             </div>
-          </AnimatedSection>
+
+            <div>
+              <label htmlFor="message" className={label}>Tell us about the project *</label>
+              <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={6} maxLength={1500} className={`${field} resize-y`} placeholder="Where it is, what you want built, and anything you are unsure about." />
+            </div>
+
+            <button
+              type="submit"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#c2571a] px-8 py-4 text-lg font-semibold text-white transition hover:bg-[#a84a14] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0f14] sm:w-auto"
+            >
+              Send on WhatsApp
+            </button>
+          </form>
         </div>
       </section>
 
-      {/* Emergency Contact */}
-      <section className="py-12 bg-red-50 border-t border-red-200">
-        <div className="container mx-auto px-4">
-          <AnimatedSection className="text-center">
-            <h3 className="text-xl font-bold text-red-800 mb-2">Emergency Construction Services</h3>
-            <p className="text-red-700 mb-4">For urgent construction emergencies, call our 24/7 hotline</p>
-            <a
-              href="tel:+2203636351"
-              className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Emergency: +220 363 6351
-            </a>
-          </AnimatedSection>
-        </div>
-      </section>
+      <ImagePanel image="panel-place" position="50% 55%" heading={"Or just\ncall us."}>
+        <SiteEnd />
+      </ImagePanel>
     </div>
   )
 }
