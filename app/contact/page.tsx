@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react"
 import AnimatedSection from "@/components/AnimatedSection"
+import { COMPANY, buildEnquiryMessage, buildWhatsAppUrl, openHandoff } from "@/lib/enquiry"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,19 +16,30 @@ export default function ContactPage() {
     message: "",
   })
 
+  const [sent, setSent] = useState(false)
+
+  const serviceLabels: Record<string, string> = {
+    residential: "Residential Construction",
+    commercial: "Commercial Construction",
+    renovation: "Renovations",
+    civil: "Civil Engineering",
+    site: "Site Development",
+    custom: "Custom Builds",
+  }
+
+  // No backend exists, so the visitor carries their own message to WhatsApp.
+  // Nothing here may promise a reply time — see PRODUCT.md.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      message: "",
-    })
-    alert("Thank you for your message! We will get back to you soon.")
+    const message = buildEnquiryMessage("Message from the Primestone website", [
+      { label: "Name", value: formData.name },
+      { label: "Email", value: formData.email },
+      { label: "Phone", value: formData.phone },
+      { label: "Service", value: serviceLabels[formData.service] ?? "" },
+      { label: "Details", value: formData.message },
+    ])
+    openHandoff(buildWhatsAppUrl(message))
+    setSent(true)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -86,6 +98,17 @@ export default function ContactPage() {
             <AnimatedSection direction="left" duration={ 2 }/*animation="slide-in-left"*/>
               <div className="bg-white p-8 rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold text-blue-900 mb-6">Send Us a Message</h2>
+                <p className="text-gray-600 mb-6">
+                  Your message opens in WhatsApp with these details filled in. It only reaches us once you press send
+                  there.
+                </p>
+                {sent && (
+                  <div role="status" className="mb-6 rounded-lg bg-green-50 border border-green-200 p-4 text-sm text-green-900">
+                    Your message is waiting in WhatsApp — press send there to deliver it. We read messages{" "}
+                    {COMPANY.hours[0].days} {COMPANY.hours[0].time} and {COMPANY.hours[1].days} {COMPANY.hours[1].time},{" "}
+                    {COMPANY.timezone}.
+                  </div>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -174,8 +197,8 @@ export default function ContactPage() {
                   </div>
 
                   <button type="submit" className="w-full btn-primary text-lg py-4">
-                    Send Message
-                    <Send className="ml-2 w-5 h-5" />
+                    Send on WhatsApp
+                    <Send className="ml-2 w-5 h-5" aria-hidden="true" />
                   </button>
                 </form>
               </div>
@@ -218,7 +241,7 @@ export default function ContactPage() {
                     For quick questions and immediate responses, chat with us on WhatsApp.
                   </p>
                   <a
-                    href="https://wa.me/2201234567"
+                    href={buildWhatsAppUrl("Hello Primestone, I would like to ask about a project.")}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
