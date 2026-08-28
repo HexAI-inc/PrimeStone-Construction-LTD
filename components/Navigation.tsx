@@ -39,11 +39,16 @@ export default function Navigation() {
 
     const { overflow } = document.body.style
     document.body.style.overflow = "hidden"
+    // The page scroller is now .snap-container, so freeze that as well.
+    const scroller = document.querySelector<HTMLElement>(".snap-container")
+    const scrollerOverflow = scroller?.style.overflow ?? ""
+    if (scroller) scroller.style.overflow = "hidden"
     document.addEventListener("keydown", onKey)
     panelRef.current?.querySelector<HTMLElement>("a[href]")?.focus()
 
     return () => {
       document.body.style.overflow = overflow
+      if (scroller) scroller.style.overflow = scrollerOverflow
       document.removeEventListener("keydown", onKey)
     }
   }, [open])

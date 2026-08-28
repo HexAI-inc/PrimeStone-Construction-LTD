@@ -108,12 +108,19 @@
 
 /* ---- Image-first homepage ---------------------------------------------- */
 
+/* The snap container has to BE the scroller. Setting scroll-snap-type on a
+   static div does nothing: the document scrolls, and the property is ignored. */
 .snap-container {
+  height: 100svh;
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .snap-panel {
   scroll-snap-align: start;
+  /* Never skip a panel in one gesture: each photograph gets its own screen. */
   scroll-snap-stop: always;
 }
 
@@ -145,7 +152,7 @@
 /* Honour the system setting: no snapping, no reveal, no smooth scroll. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .snap-container { scroll-snap-type: none; }
+  .snap-container { scroll-snap-type: none; scroll-behavior: auto; }
   .panel-copy > *,
   .menu-item { animation: none; }
   *, *::before, *::after {
@@ -153,4 +160,23 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Horizontal service rail: the arrows and progress marks are the affordance. */
+.services-rail {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.services-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.services-rail:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-rail { scroll-behavior: auto; scroll-snap-type: none; }
 }

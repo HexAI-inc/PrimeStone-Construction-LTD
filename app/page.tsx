@@ -22,7 +22,7 @@ export default function Home() {
           if (i >= 0) setActive(i)
         }
       },
-      { threshold: 0.55 },
+      { root: containerRef.current, threshold: 0.55 },
     )
     list.forEach((el) => io.observe(el))
     return () => io.disconnect()

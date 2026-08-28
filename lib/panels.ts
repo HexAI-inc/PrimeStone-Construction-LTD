@@ -84,6 +84,7 @@ export const PHOTO_CREDITS = [
   { file: "panel-team", title: "Construction site workers in Embu, Kenya", author: "Mugambi Muriuki", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/Category:Construction_in_Kenya" },
   { file: "panel-quote", title: "Construction site workers in Embu, Kenya", author: "Mugambi Muriuki", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/Category:Construction_in_Kenya" },
   { file: "panel-contact", title: "Street in Banjul", author: "Demian", licence: "CC BY 2.0", licenceUrl: "https://creativecommons.org/licenses/by/2.0/", source: "https://commons.wikimedia.org/wiki/File:Street_in_Banjul_(3407998326).jpg" },
+  { file: "svc-civil", title: "Asphalt paving", author: "Sammya Nig Ltd", licence: "CC BY-SA 4.0", licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/File:Asphalt_paving.jpg" },
 ]
 
 export const NAV_LINKS = [
