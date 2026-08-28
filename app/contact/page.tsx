@@ -77,7 +77,7 @@ export default function ContactPage() {
       </ImagePanel>
 
       <section className="px-6 py-24 sm:px-10 lg:px-16" aria-labelledby="send-heading">
-        <div className="w-full max-w-3xl">
+        <div className="mx-auto w-full max-w-3xl">
           <h2 id="send-heading" className="font-display text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-tight tracking-[-0.03em] text-[color:var(--sand)]">
             Send us a message
           </h2>

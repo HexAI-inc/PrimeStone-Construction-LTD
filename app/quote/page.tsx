@@ -361,7 +361,7 @@ export default function QuotePage() {
       {status !== "sent" && (
         <section className="border-b border-white/10 pb-8 pt-28 sm:pt-32">
           <div className="px-6 sm:px-10 lg:px-16">
-            <div className="max-w-4xl">
+            <div className="mx-auto max-w-4xl">
               <p className="mb-4 text-sm font-medium text-[color:var(--sand-dim)] sm:hidden">
                 Step {currentStep} of 4 — {steps[currentStep - 1].title}
               </p>
@@ -406,7 +406,7 @@ export default function QuotePage() {
 
       <section className="py-16">
         <div className="px-6 sm:px-10 lg:px-16">
-          <div className="max-w-4xl">
+          <div className="mx-auto max-w-4xl">
             {status === "sent" ? (
               <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-8">
                 <div className="mb-6 flex items-start gap-3">
