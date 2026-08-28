@@ -42,11 +42,11 @@ export default function ContactPage() {
   }
 
   const field =
-    "w-full rounded-lg border border-white/25 bg-white/[0.06] px-4 py-3 text-base text-white placeholder-white/45 transition focus:border-white/60 focus:outline-none focus:ring-2 focus:ring-[#ff9d4d]"
-  const label = "mb-2 block text-sm font-medium text-white/80"
+    "w-full rounded-lg border border-white/25 bg-white/[0.06] px-4 py-3 text-base text-[color:var(--sand)] placeholder-[color:var(--sand-faint)] transition focus:border-white/60 focus:outline-none focus:ring-2 focus:ring-[color:var(--ember)]"
+  const label = "mb-2 block text-sm font-medium text-[color:var(--sand-dim)]"
 
   return (
-    <div className="bg-[#0b0f14]">
+    <div className="bg-[color:var(--ground)]">
       <ImagePanel
         image="panel-contact"
         position="50% 50%"
@@ -57,36 +57,36 @@ export default function ContactPage() {
       >
         <div className="mt-10 grid gap-8 sm:grid-cols-3">
           <div>
-            <div className="text-sm uppercase tracking-widest text-white/55">Phone</div>
-            <a href={`tel:+${COMPANY.whatsappNumber}`} className="mt-1 block text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phonePrimary}</a>
-            <a href="tel:+2207834351" className="block text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phoneSecondary}</a>
+            <div className="text-sm uppercase tracking-widest text-[color:var(--sand-faint)]">Phone</div>
+            <a href={`tel:+${COMPANY.whatsappNumber}`} className="mt-1 block text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phonePrimary}</a>
+            <a href="tel:+2207834351" className="block text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
           </div>
           <div>
-            <div className="text-sm uppercase tracking-widest text-white/55">Email</div>
-            <a href={`mailto:${COMPANY.emailGeneral}`} className="mt-1 block break-all text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.emailGeneral}</a>
-            <a href={`mailto:${COMPANY.emailProjects}`} className="block break-all text-lg text-white underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.emailProjects}</a>
+            <div className="text-sm uppercase tracking-widest text-[color:var(--sand-faint)]">Email</div>
+            <a href={`mailto:${COMPANY.emailGeneral}`} className="mt-1 block break-all text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailGeneral}</a>
+            <a href={`mailto:${COMPANY.emailProjects}`} className="block break-all text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailProjects}</a>
           </div>
           <div>
-            <div className="text-sm uppercase tracking-widest text-white/55">Open</div>
+            <div className="text-sm uppercase tracking-widest text-[color:var(--sand-faint)]">Open</div>
             {COMPANY.hours.map((h) => (
-              <p key={h.days} className="mt-1 text-lg text-white/90">{h.days}, {h.time}</p>
+              <p key={h.days} className="mt-1 text-lg text-[color:var(--sand-dim)]">{h.days}, {h.time}</p>
             ))}
-            <p className="text-white/60">All times {COMPANY.timezone}</p>
+            <p className="text-[color:var(--sand-faint)]">All times {COMPANY.timezone}</p>
           </div>
         </div>
       </ImagePanel>
 
-      <section className="px-6 py-24 sm:px-8" aria-labelledby="send-heading">
-        <div className="mx-auto w-full max-w-3xl">
-          <h2 id="send-heading" className="text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-tight tracking-[-0.03em] text-white">
+      <section className="px-6 py-24 sm:px-10 lg:px-16" aria-labelledby="send-heading">
+        <div className="w-full max-w-3xl">
+          <h2 id="send-heading" className="font-display text-[clamp(2rem,4.4vw,3.25rem)] font-semibold leading-tight tracking-[-0.03em] text-[color:var(--sand)]">
             Send us a message
           </h2>
-          <p className="mt-5 text-lg text-white/75">
+          <p className="mt-5 text-lg text-[color:var(--sand-dim)]">
             Your message opens in WhatsApp with these details filled in. It only reaches us once you press send there.
           </p>
 
           {sent && (
-            <div role="status" className="mt-8 rounded-lg border border-[#ff9d4d]/40 bg-[#ff9d4d]/10 p-4 text-base text-white">
+            <div role="status" className="mt-8 rounded-lg border border-[color:var(--ember)]/40 bg-[#ff9d4d]/10 p-4 text-base text-[color:var(--sand)]">
               Your message is waiting in WhatsApp — press send there to deliver it. We read messages{" "}
               {COMPANY.hours[0].days} {COMPANY.hours[0].time} and {COMPANY.hours[1].days} {COMPANY.hours[1].time},{" "}
               {COMPANY.timezone}.
@@ -125,7 +125,7 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#c2571a] px-8 py-4 text-lg font-semibold text-white transition hover:bg-[#a84a14] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0f14] sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[color:var(--ember-deep)] px-8 py-4 text-lg font-semibold text-[color:var(--sand)] transition hover:bg-[#a84a14] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--ground)] sm:w-auto"
             >
               Send on WhatsApp
             </button>

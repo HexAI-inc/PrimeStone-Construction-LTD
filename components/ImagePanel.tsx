@@ -18,7 +18,7 @@ type Props = {
 }
 
 /**
- * One full-viewport photograph with copy over it.
+ * One full-viewport photograph with copy set hard against the left edge.
  *
  * The photographs are bright daylight scenes, so legibility comes from two
  * stacked layers: an overall veil, then a deep shadow ramp up from the bottom
@@ -54,7 +54,7 @@ export default function ImagePanel({
           alt=""
           loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : undefined}
-          style={{ objectPosition: position, filter: "saturate(0.82) contrast(1.06) brightness(0.84)" }}
+          style={{ objectPosition: position, filter: "saturate(0.8) contrast(1.06) brightness(0.82)" }}
           className="absolute inset-0 h-full w-full object-cover"
         />
       </picture>
@@ -77,27 +77,34 @@ export default function ImagePanel({
             "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.72) 18%, rgba(0,0,0,0.40) 45%, rgba(0,0,0,0.12) 75%, rgba(0,0,0,0) 100%)",
         }}
       />
+      {/* A little extra weight down the left edge, where the copy now lives. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 w-[65%]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.28) 45%, rgba(0,0,0,0) 100%)",
+        }}
+      />
 
-      <div className="panel-copy relative z-10 w-full px-6 pb-16 pt-32 sm:px-8 sm:pb-20 lg:pb-24">
-        <div className="mx-auto w-full max-w-5xl">
-          <h1
-            className={`max-w-4xl whitespace-pre-line font-semibold leading-[1.0] tracking-[-0.035em] text-white [text-wrap:balance] ${
-              size === "hero"
-                ? "text-[clamp(2.75rem,6.8vw,5.5rem)]"
-                : "text-[clamp(2.4rem,5.4vw,4.5rem)]"
-            }`}
-          >
-            {heading}
-          </h1>
+      <div className="panel-copy relative z-10 w-full pb-16 pl-6 pr-6 pt-32 sm:pb-20 sm:pl-10 sm:pr-10 lg:pb-24 lg:pl-16">
+        <h1
+          className={`max-w-[22ch] whitespace-pre-line font-display font-semibold leading-[1.02] tracking-[-0.02em] text-[color:var(--sand)] ${
+            size === "hero"
+              ? "text-[clamp(2.6rem,6.4vw,5.25rem)]"
+              : "text-[clamp(2.25rem,5vw,4.25rem)]"
+          }`}
+        >
+          {heading}
+        </h1>
 
-          {body && (
-            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-white/90 sm:text-xl lg:text-2xl">
-              {body}
-            </p>
-          )}
+        {body && (
+          <p className="mt-7 max-w-[46ch] text-lg leading-relaxed text-[color:var(--sand-dim)] sm:text-xl lg:text-[1.375rem]">
+            {body}
+          </p>
+        )}
 
-          {children}
-        </div>
+        {children}
       </div>
     </section>
   )

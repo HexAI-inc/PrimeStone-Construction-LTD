@@ -16,7 +16,7 @@ export const metadata: Metadata = {
  */
 export default function TeamPage() {
   return (
-    <div className="snap-container bg-[#0b0f14]">
+    <div className="snap-container bg-[color:var(--ground)]">
       <ImagePanel
         image="panel-team"
         position="50% 42%"
@@ -32,12 +32,12 @@ export default function TeamPage() {
         heading={"Who you\nwill deal with"}
         body="Call either number during opening hours and you reach the people running the work — not a call centre, and not a form that goes nowhere."
       >
-        <div className="mt-9 flex flex-wrap gap-x-10 gap-y-3 text-lg text-white/90">
-          <a href={`tel:+${COMPANY.whatsappNumber}`} className="underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phonePrimary}</a>
-          <a href="tel:+2207834351" className="underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phoneSecondary}</a>
-          <a href={`mailto:${COMPANY.emailProjects}`} className="underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.emailProjects}</a>
+        <div className="mt-9 flex flex-wrap gap-x-10 gap-y-3 text-lg text-[color:var(--sand-dim)]">
+          <a href={`tel:+${COMPANY.whatsappNumber}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phonePrimary}</a>
+          <a href="tel:+2207834351" className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
+          <a href={`mailto:${COMPANY.emailProjects}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailProjects}</a>
         </div>
-        <p className="mt-8 max-w-3xl text-base text-white/70 sm:text-lg">
+        <p className="mt-8 max-w-3xl text-base text-[color:var(--sand-faint)] sm:text-lg">
           Want to know exactly who will run your build, and see them? Ask us — we will tell you their name and what
           else they have worked on.
         </p>

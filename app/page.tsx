@@ -29,7 +29,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div ref={containerRef} className="snap-container bg-[#0b0f14]">
+    <div ref={containerRef} className="snap-container bg-[color:var(--ground)]">
       <nav
         aria-label="Sections"
         className="fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 flex-col items-end gap-4 sm:right-8 lg:flex"
@@ -63,7 +63,7 @@ export default function Home() {
           size={i === 0 ? "hero" : "section"}
         >
           {panel.items && (
-            <ul className="mt-9 grid max-w-3xl grid-cols-1 gap-x-12 gap-y-1 text-lg text-white/90 sm:grid-cols-2 sm:text-xl">
+            <ul className="mt-9 grid max-w-3xl grid-cols-1 gap-x-12 gap-y-1 text-lg text-[color:var(--sand-dim)] sm:grid-cols-2 sm:text-xl">
               {panel.items.map((item) => (
                 <li key={item} className="border-b border-white/25 py-3">{item}</li>
               ))}
@@ -71,10 +71,10 @@ export default function Home() {
           )}
 
           {panel.id === "people" && (
-            <div className="mt-9 flex flex-wrap gap-x-10 gap-y-3 text-lg text-white/90">
-              <a href={`tel:+${COMPANY.whatsappNumber}`} className="underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phonePrimary}</a>
-              <a href="tel:+2207834351" className="underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.phoneSecondary}</a>
-              <a href={`mailto:${COMPANY.emailGeneral}`} className="underline-offset-4 hover:text-[#ff9d4d] hover:underline">{COMPANY.emailGeneral}</a>
+            <div className="mt-9 flex flex-wrap gap-x-10 gap-y-3 text-lg text-[color:var(--sand-dim)]">
+              <a href={`tel:+${COMPANY.whatsappNumber}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phonePrimary}</a>
+              <a href="tel:+2207834351" className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
+              <a href={`mailto:${COMPANY.emailGeneral}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailGeneral}</a>
             </div>
           )}
 

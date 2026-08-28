@@ -1,12 +1,20 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
+import { Fraunces, Inter } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/Navigation"
 
-const poppins = Poppins({
+// Fraunces carries the display voice; Inter does the reading.
+const display = Fraunces({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-display",
+})
+
+const body = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
 })
 
 export const metadata: Metadata = {
@@ -30,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={poppins.className}>
+    <html lang="en" className={`scroll-smooth ${display.variable} ${body.variable}`}>
+      <body className="font-body antialiased">
         <Navigation />
         <main>{children}</main>
       </body>

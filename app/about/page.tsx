@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="snap-container bg-[#0b0f14]">
+    <div className="snap-container bg-[color:var(--ground)]">
       <ImagePanel
         image="panel-about"
         position="50% 45%"
@@ -26,7 +26,7 @@ export default function AboutPage() {
         heading={"What we are\nfor"}
         body="Most of the people who write to us are not in the country. They are choosing a contractor from a screen, sending money across a border, and relying on someone they have not met. That is the job we have organised ourselves around."
       >
-        <ul className="mt-9 max-w-3xl space-y-4 text-lg text-white/90 sm:text-xl">
+        <ul className="mt-9 max-w-3xl space-y-4 text-lg text-[color:var(--sand-dim)] sm:text-xl">
           <li className="border-t border-white/20 pt-4">
             Ask us where the work has reached and we will send photographs of it.
           </li>

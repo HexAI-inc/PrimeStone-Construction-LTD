@@ -29,7 +29,7 @@ const ALSO = [
 
 export default function ServicesPage() {
   return (
-    <div className="snap-container bg-[#0b0f14]">
+    <div className="snap-container bg-[color:var(--ground)]">
       <ImagePanel
         image="panel-services"
         position="50% 40%"
@@ -43,8 +43,8 @@ export default function ServicesPage() {
         <ul className="mt-9 grid max-w-4xl grid-cols-1 gap-x-12 gap-y-6 sm:grid-cols-2">
           {SERVICES.map((s) => (
             <li key={s.name} className="border-t border-white/25 pt-4">
-              <div className="text-xl font-semibold text-white sm:text-2xl">{s.name}</div>
-              <p className="mt-1.5 text-base text-white/80 sm:text-lg">{s.note}</p>
+              <div className="text-xl font-semibold text-[color:var(--sand)] sm:text-2xl">{s.name}</div>
+              <p className="mt-1.5 text-base text-[color:var(--sand-dim)] sm:text-lg">{s.note}</p>
             </li>
           ))}
         </ul>
@@ -58,7 +58,7 @@ export default function ServicesPage() {
       >
         <ul className="mt-8 flex max-w-3xl flex-wrap gap-x-3 gap-y-3">
           {ALSO.map((a) => (
-            <li key={a} className="rounded-full border border-white/30 px-5 py-2 text-base text-white/90 sm:text-lg">{a}</li>
+            <li key={a} className="rounded-full border border-white/30 px-5 py-2 text-base text-[color:var(--sand-dim)] sm:text-lg">{a}</li>
           ))}
         </ul>
         <SiteEnd />

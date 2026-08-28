@@ -29,6 +29,14 @@
   --input: 214.3 31.8% 91.4%;
   --ring: 222.2 84% 4.9%;
   --radius: 0.5rem;
+
+  /* Image-first world */
+  --ground: #0b0f14;
+  --sand: #f2ece3;
+  --sand-dim: rgba(242, 236, 227, 0.78);
+  --sand-faint: rgba(242, 236, 227, 0.58);
+  --ember: #ff9d4d;
+  --ember-deep: #c2571a;
 }
 
 @layer base {
@@ -55,38 +63,12 @@
 }
 
 @layer components {
-  .hero-gradient {
-    background: linear-gradient(135deg, #1b4b73 0%, #2563eb 50%, #3b82f6 100%);
-  }
 
-  .orange-gradient {
-    background: linear-gradient(135deg, #d2691e 0%, #ff8c42 100%);
-  }
 
-  .glass-effect {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
 
-  .text-gradient {
-    background: linear-gradient(135deg, #1b4b73 0%, #d2691e 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
 
-  .btn-primary {
-    @apply bg-gradient-to-r from-orange-800 to-orange-700 hover:from-orange-900 hover:to-orange-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center justify-center whitespace-nowrap;
-  }
 
-  .btn-secondary {
-    @apply border-2 border-white text-white hover:bg-white hover:text-blue-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center justify-center whitespace-nowrap;
-  }
 
-  .card-hover {
-    @apply hover:shadow-xl hover:-translate-y-2 transition-all duration-300;
-  }
 
   /* 3D Card Effects */
   .perspective-1000 {
@@ -156,8 +138,8 @@
 
 /* Selection and caret belong to the design, not to the browser default. */
 ::selection {
-  background: #c2571a;
-  color: #fff;
+  background: var(--ember-deep);
+  color: var(--sand);
 }
 
 /* Honour the system setting: no snapping, no reveal, no smooth scroll. */

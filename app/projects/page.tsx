@@ -16,7 +16,7 @@ export const metadata: Metadata = {
  */
 export default function ProjectsPage() {
   return (
-    <div className="snap-container bg-[#0b0f14]">
+    <div className="snap-container bg-[color:var(--ground)]">
       <ImagePanel
         image="panel-projects"
         position="50% 45%"
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
             href={buildWhatsAppUrl("Hello Primestone, could you send me references or photographs of work you have completed?")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-[#c2571a] px-8 py-4 text-base font-semibold text-white transition hover:bg-[#a84a14] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0f14] sm:text-lg"
+            className="inline-flex items-center justify-center rounded-full bg-[color:var(--ember-deep)] px-8 py-4 text-base font-semibold text-[color:var(--sand)] transition hover:bg-[#a84a14] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--ground)] sm:text-lg"
           >
             Ask for references
           </a>
@@ -43,7 +43,7 @@ export default function ProjectsPage() {
         heading={"What you can\nask us for"}
         body="Any of this, on WhatsApp, without an appointment."
       >
-        <ul className="mt-9 max-w-3xl space-y-4 text-lg text-white/90 sm:text-xl">
+        <ul className="mt-9 max-w-3xl space-y-4 text-lg text-[color:var(--sand-dim)] sm:text-xl">
           <li className="border-t border-white/20 pt-4">Photographs of a site we are working on now.</li>
           <li className="border-t border-white/20 pt-4">Clients who will talk to you about how it went.</li>
           <li className="border-t border-white/20 pt-4">A written breakdown of what a build like yours costs.</li>

@@ -330,7 +330,7 @@ export default function QuotePage() {
   }
 
   const inputClass = (field: FieldName) =>
-    `w-full rounded-lg border bg-white/[0.06] px-4 py-3 text-base text-white placeholder-white/45 transition-colors focus:outline-none focus:ring-2 focus:ring-[#ff9d4d] ${
+    `w-full rounded-lg border bg-white/[0.06] px-4 py-3 text-base text-[color:var(--sand)] placeholder-[color:var(--sand-faint)] transition-colors focus:outline-none focus:ring-2 focus:ring-[color:var(--ember)] ${
       errors[field] ? "border-red-400" : "border-white/25 focus:border-white/60"
     }`
 
@@ -338,10 +338,10 @@ export default function QuotePage() {
     [errors[field] ? `error-${field}` : null, extra].filter(Boolean).join(" ") || undefined
 
   const primaryButtonClass =
-    "inline-flex items-center justify-center gap-2 rounded-full bg-[#c2571a] px-8 py-3.5 font-semibold text-white transition hover:bg-[#a84a14] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0f14] disabled:cursor-not-allowed disabled:opacity-60"
+    "inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--ember-deep)] px-8 py-3.5 font-semibold text-[color:var(--sand)] transition hover:bg-[#a84a14] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--ground)] disabled:cursor-not-allowed disabled:opacity-60"
 
   return (
-    <div className="bg-[#0b0f14] text-white">
+    <div className="bg-[color:var(--ground)] text-[color:var(--sand)]">
       {/* Announcements for screen readers: step moves, validation, send status. */}
       <div aria-live="polite" role="status" className="sr-only">
         {announcement}
@@ -360,9 +360,9 @@ export default function QuotePage() {
 
       {status !== "sent" && (
         <section className="border-b border-white/10 pb-8 pt-28 sm:pt-32">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <p className="mb-4 text-sm font-medium text-white/75 sm:hidden">
+          <div className="px-6 sm:px-10 lg:px-16">
+            <div className="max-w-4xl">
+              <p className="mb-4 text-sm font-medium text-[color:var(--sand-dim)] sm:hidden">
                 Step {currentStep} of 4 — {steps[currentStep - 1].title}
               </p>
               <ol className="flex items-center justify-between">
@@ -377,14 +377,14 @@ export default function QuotePage() {
                         aria-current={isCurrent ? "step" : undefined}
                         aria-label={`Step ${step.number} of 4: ${step.title}`}
                         className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all focus:outline-none focus:ring-2 focus:ring-orange-900 focus:ring-offset-2 ${
-                          reached ? "border-[#c2571a] bg-[#c2571a] text-white" : "border-white/30 bg-transparent text-white/70"
+                          reached ? "border-[#c2571a] bg-[color:var(--ember-deep)] text-[color:var(--sand)]" : "border-white/30 bg-transparent text-[color:var(--sand-faint)]"
                         }`}
                       >
                         <step.Icon className="h-5 w-5" aria-hidden="true" />
                       </button>
                       <span
                         className={`ml-3 hidden truncate text-sm font-medium sm:block ${
-                          reached ? "text-[#ff9d4d]" : "text-white/70"
+                          reached ? "text-[color:var(--ember)]" : "text-[color:var(--sand-faint)]"
                         }`}
                       >
                         {step.title}
@@ -392,7 +392,7 @@ export default function QuotePage() {
                       {index < steps.length - 1 && (
                         <span
                           aria-hidden="true"
-                          className={`mx-4 h-0.5 w-8 flex-shrink-0 ${currentStep > step.number ? "bg-[#c2571a]" : "bg-white/25"}`}
+                          className={`mx-4 h-0.5 w-8 flex-shrink-0 ${currentStep > step.number ? "bg-[color:var(--ember-deep)]" : "bg-white/25"}`}
                         />
                       )}
                     </li>
@@ -405,8 +405,8 @@ export default function QuotePage() {
       )}
 
       <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="px-6 sm:px-10 lg:px-16">
+          <div className="max-w-4xl">
             {status === "sent" ? (
               <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-8">
                 <div className="mb-6 flex items-start gap-3">
@@ -430,14 +430,14 @@ export default function QuotePage() {
                   <button
                     type="button"
                     onClick={handleCopy}
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3.5 font-semibold text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0f14]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3.5 font-semibold text-[color:var(--sand)] transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--ground)]"
                   >
                     {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
                     {copied ? "Copied" : "Copy the request"}
                   </button>
                   <a
                     href={buildMailtoUrl(enquirySubject, enquiryMessage)}
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3.5 font-semibold text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0f14]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3.5 font-semibold text-[color:var(--sand)] transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--ground)]"
                   >
                     <Mail className="h-4 w-4" aria-hidden="true" />
                     Send by email instead
@@ -445,20 +445,20 @@ export default function QuotePage() {
                 </div>
 
                 <div className="mb-8">
-                  <h3 className="mb-3 font-semibold text-white">What you are sending</h3>
-                  <pre className="max-h-72 overflow-auto whitespace-pre-wrap break-words rounded-lg border border-white/12 bg-white/[0.05] p-4 font-sans text-sm text-white/85">
+                  <h3 className="mb-3 font-semibold text-[color:var(--sand)]">What you are sending</h3>
+                  <pre className="max-h-72 overflow-auto whitespace-pre-wrap break-words rounded-lg border border-white/12 bg-white/[0.05] p-4 font-sans text-sm text-[color:var(--sand-dim)]">
                     {enquiryMessage}
                   </pre>
                 </div>
 
                 <div className="rounded-lg border border-white/12 bg-white/[0.05] p-6">
-                  <h3 className="mb-3 font-semibold text-white">When you will hear back</h3>
-                  <p className="text-sm text-white/85">
+                  <h3 className="mb-3 font-semibold text-[color:var(--sand)]">When you will hear back</h3>
+                  <p className="text-sm text-[color:var(--sand-dim)]">
                     We read WhatsApp during opening hours: {COMPANY.hours[0].days} {COMPANY.hours[0].time}, and{" "}
                     {COMPANY.hours[1].days} {COMPANY.hours[1].time}, {COMPANY.timezone}. If you are messaging from
                     outside The Gambia, that may be the next working morning our side.
                   </p>
-                  <p className="mt-3 text-sm text-white/85">
+                  <p className="mt-3 text-sm text-[color:var(--sand-dim)]">
                     Prefer to speak to someone? Call {COMPANY.phonePrimary} or {COMPANY.phoneSecondary} during those
                     hours.
                   </p>
@@ -467,7 +467,7 @@ export default function QuotePage() {
                 <button
                   type="button"
                   onClick={startOver}
-                  className="mt-6 text-sm font-medium text-[#ff9d4d] underline underline-offset-4 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="mt-6 text-sm font-medium text-[color:var(--ember)] underline underline-offset-4 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)]"
                 >
                   Start another request
                 </button>
@@ -475,7 +475,7 @@ export default function QuotePage() {
             ) : (
               <form onSubmit={handleSubmit} noValidate className="rounded-2xl border border-white/12 bg-white/[0.04] p-6 sm:p-8">
                 {draftRestored && (
-                  <div className="mb-8 flex items-start gap-3 rounded-lg border border-white/12 bg-white/[0.05] p-4 text-sm text-white/85">
+                  <div className="mb-8 flex items-start gap-3 rounded-lg border border-white/12 bg-white/[0.05] p-4 text-sm text-[color:var(--sand-dim)]">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0" aria-hidden="true" />
                     <p className="min-w-0">
                       We brought back what you had already filled in.{" "}
@@ -489,10 +489,10 @@ export default function QuotePage() {
 
                 {currentStep === 1 && (
                   <div>
-                    <h2 className="mb-8 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Your details</h2>
+                    <h2 className="mb-8 font-display text-3xl font-semibold tracking-[-0.02em] text-[color:var(--sand)] sm:text-4xl">Your details</h2>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                       <div className="min-w-0">
-                        <label htmlFor="field-name" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-name" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           Full <span className="whitespace-nowrap">name <span className="text-[#ff8f8f]">*</span></span>
                         </label>
                         <input
@@ -513,7 +513,7 @@ export default function QuotePage() {
                       </div>
 
                       <div className="min-w-0">
-                        <label htmlFor="field-email" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-email" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           Email <span className="whitespace-nowrap">address <span className="text-[#ff8f8f]">*</span></span>
                         </label>
                         <input
@@ -535,7 +535,7 @@ export default function QuotePage() {
                       </div>
 
                       <div className="min-w-0">
-                        <label htmlFor="field-phone" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-phone" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           Phone or WhatsApp <span className="whitespace-nowrap">number <span className="text-[#ff8f8f]">*</span></span>
                         </label>
                         <input
@@ -554,13 +554,13 @@ export default function QuotePage() {
                           placeholder="+220 363 6351"
                         />
                         {errors.phone && <FieldError id="error-phone">{errors.phone}</FieldError>}
-                        <p id="hint-phone" className="mt-2 text-sm text-white/65">
+                        <p id="hint-phone" className="mt-2 text-sm text-[color:var(--sand-faint)]">
                           Include your country code if you are outside The Gambia.
                         </p>
                       </div>
 
                       <div className="min-w-0">
-                        <label htmlFor="field-company" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-company" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           Company <span className="font-normal text-gray-600">(optional)</span>
                         </label>
                         <input
@@ -581,10 +581,10 @@ export default function QuotePage() {
 
                 {currentStep === 2 && (
                   <div>
-                    <h2 className="mb-8 text-3xl font-semibold tracking-tight text-white sm:text-4xl">The project</h2>
+                    <h2 className="mb-8 font-display text-3xl font-semibold tracking-[-0.02em] text-[color:var(--sand)] sm:text-4xl">The project</h2>
 
                     <fieldset className="mb-8">
-                      <legend className="mb-4 text-sm font-medium text-white/80">
+                      <legend className="mb-4 text-sm font-medium text-[color:var(--sand-dim)]">
                         What kind of work is <span className="whitespace-nowrap">it? <span className="text-[#ff8f8f]">*</span></span>
                       </legend>
                       <div
@@ -606,12 +606,12 @@ export default function QuotePage() {
                             <span
                               className={`flex h-full flex-col items-center gap-2 rounded-lg border-2 p-4 text-center transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-orange-900 peer-focus-visible:ring-offset-2 ${
                                 formData.projectType === type.id
-                                  ? "border-[#ff9d4d] bg-[#ff9d4d]/12"
+                                  ? "border-[color:var(--ember)] bg-[#ff9d4d]/12"
                                   : "border-white/25 hover:border-white/60"
                               }`}
                             >
-                              <type.Icon className="h-6 w-6 text-[#ff9d4d]" aria-hidden="true" />
-                              <span className="font-medium text-white">{type.label}</span>
+                              <type.Icon className="h-6 w-6 text-[color:var(--ember)]" aria-hidden="true" />
+                              <span className="font-medium text-[color:var(--sand)]">{type.label}</span>
                             </span>
                           </label>
                         ))}
@@ -620,10 +620,10 @@ export default function QuotePage() {
                     </fieldset>
 
                     <fieldset className="mb-8">
-                      <legend className="mb-1 text-sm font-medium text-white/80">
+                      <legend className="mb-1 text-sm font-medium text-[color:var(--sand-dim)]">
                         Roughly what budget are you working <span className="whitespace-nowrap">with? <span className="text-[#ff8f8f]">*</span></span>
                       </legend>
-                      <p className="mb-4 text-sm text-white/65">
+                      <p className="mb-4 text-sm text-[color:var(--sand-faint)]">
                         Ranges are in US dollars. A rough band is enough — it only shapes the first conversation.
                       </p>
                       <div
@@ -645,12 +645,12 @@ export default function QuotePage() {
                             <span
                               className={`block rounded-lg border-2 p-4 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-orange-900 peer-focus-visible:ring-offset-2 ${
                                 formData.projectSize === size.id
-                                  ? "border-[#ff9d4d] bg-[#ff9d4d]/12"
+                                  ? "border-[color:var(--ember)] bg-[#ff9d4d]/12"
                                   : "border-white/25 hover:border-white/60"
                               }`}
                             >
-                              <span className="mb-1 block font-medium text-white">{size.label}</span>
-                              <span className="block text-sm text-white/70">{size.description}</span>
+                              <span className="mb-1 block font-medium text-[color:var(--sand)]">{size.label}</span>
+                              <span className="block text-sm text-[color:var(--sand-faint)]">{size.description}</span>
                             </span>
                           </label>
                         ))}
@@ -660,7 +660,7 @@ export default function QuotePage() {
 
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                       <div className="min-w-0">
-                        <label htmlFor="field-location" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-location" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           Where is the <span className="whitespace-nowrap">project? <span className="text-[#ff8f8f]">*</span></span>
                         </label>
                         <input
@@ -680,7 +680,7 @@ export default function QuotePage() {
                       </div>
 
                       <div className="min-w-0">
-                        <label htmlFor="field-timeline" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-timeline" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           When would you like to start?
                         </label>
                         <select
@@ -704,10 +704,10 @@ export default function QuotePage() {
 
                 {currentStep === 3 && (
                   <div>
-                    <h2 className="mb-8 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Requirements</h2>
+                    <h2 className="mb-8 font-display text-3xl font-semibold tracking-[-0.02em] text-[color:var(--sand)] sm:text-4xl">Requirements</h2>
 
                     <div className="mb-8">
-                      <label htmlFor="field-description" className="mb-2 block text-sm font-medium text-white/80">
+                      <label htmlFor="field-description" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                         Describe the <span className="whitespace-nowrap">project <span className="text-[#ff8f8f]">*</span></span>
                       </label>
                       <textarea
@@ -724,13 +724,13 @@ export default function QuotePage() {
                         placeholder="Size, number of rooms, style, the plot, anything already built, and anything you are unsure about."
                       />
                       {errors.description && <FieldError id="error-description">{errors.description}</FieldError>}
-                      <p id="hint-description" className="mt-2 text-sm text-white/65">
+                      <p id="hint-description" className="mt-2 text-sm text-[color:var(--sand-faint)]">
                         {formData.description.length} of {LIMITS.description} characters used.
                       </p>
                     </div>
 
                     <fieldset className="mb-8">
-                      <legend className="mb-4 text-sm font-medium text-white/80">Anything else you need from us?</legend>
+                      <legend className="mb-4 text-sm font-medium text-[color:var(--sand-dim)]">Anything else you need from us?</legend>
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
                         {additionalServices.map((service) => (
                           <label key={service} className="flex cursor-pointer items-center gap-2">
@@ -740,7 +740,7 @@ export default function QuotePage() {
                               onChange={() => toggleService(service)}
                               className="h-4 w-4 flex-shrink-0 rounded border-gray-300 accent-[#c2571a] focus:outline-none focus:ring-2 focus:ring-orange-900 focus:ring-offset-2"
                             />
-                            <span className="min-w-0 text-sm text-white/85">{service}</span>
+                            <span className="min-w-0 text-sm text-[color:var(--sand-dim)]">{service}</span>
                           </label>
                         ))}
                       </div>
@@ -748,7 +748,7 @@ export default function QuotePage() {
 
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                       <div className="min-w-0">
-                        <label htmlFor="field-materials" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-materials" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           Materials or finishes you have in mind
                         </label>
                         <textarea
@@ -763,7 +763,7 @@ export default function QuotePage() {
                         />
                       </div>
                       <div className="min-w-0">
-                        <label htmlFor="field-permits" className="mb-2 block text-sm font-medium text-white/80">
+                        <label htmlFor="field-permits" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
                           Permits, access, or anything unusual
                         </label>
                         <textarea
@@ -783,22 +783,22 @@ export default function QuotePage() {
 
                 {currentStep === 4 && (
                   <div>
-                    <h2 className="mb-8 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Review & send</h2>
+                    <h2 className="mb-8 font-display text-3xl font-semibold tracking-[-0.02em] text-[color:var(--sand)] sm:text-4xl">Review & send</h2>
 
                     <dl className="mb-8 grid grid-cols-1 gap-4 rounded-lg border border-white/12 bg-white/[0.05] p-6 text-sm md:grid-cols-2">
                       {enquiryFields
                         .filter((field) => field.value.trim().length > 0)
                         .map((field) => (
                           <div key={field.label} className="min-w-0">
-                            <dt className="font-semibold text-white">{field.label}</dt>
-                            <dd className="mt-1 whitespace-pre-wrap break-words text-white/80">{field.value}</dd>
+                            <dt className="font-semibold text-[color:var(--sand)]">{field.label}</dt>
+                            <dd className="mt-1 whitespace-pre-wrap break-words text-[color:var(--sand-dim)]">{field.value}</dd>
                           </div>
                         ))}
                     </dl>
 
                     <div className="mb-8 rounded-lg border border-white/12 bg-white/[0.05] p-6">
-                      <h3 className="mb-4 font-semibold text-white">What happens when you press send</h3>
-                      <ul className="space-y-3 text-sm text-white/85">
+                      <h3 className="mb-4 font-semibold text-[color:var(--sand)]">What happens when you press send</h3>
+                      <ul className="space-y-3 text-sm text-[color:var(--sand-dim)]">
                         <li className="flex items-start gap-2">
                           <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-700" aria-hidden="true" />
                           <span>WhatsApp opens with these details already written out.</span>
@@ -828,10 +828,10 @@ export default function QuotePage() {
                     type="button"
                     onClick={() => goToStep(currentStep - 1)}
                     disabled={currentStep === 1}
-                    className={`inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0f14] ${
+                    className={`inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--ground)] ${
                       currentStep === 1
-                        ? "cursor-not-allowed border border-white/12 text-white/35"
-                        : "border border-white/40 text-white hover:bg-white/10"
+                        ? "cursor-not-allowed border border-white/12 text-[color:var(--sand-faint)]"
+                        : "border border-white/40 text-[color:var(--sand)] hover:bg-white/10"
                     }`}
                   >
                     <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -857,9 +857,9 @@ export default function QuotePage() {
       </section>
 
       <section className="border-t border-white/10 py-20">
-        <div className="container mx-auto px-4">
+        <div className="px-6 sm:px-10 lg:px-16">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-8 text-3xl font-semibold tracking-tight text-white sm:text-4xl">Rather not fill in a form?</h2>
+            <h2 className="mb-8 font-display text-3xl font-semibold tracking-[-0.02em] text-[color:var(--sand)] sm:text-4xl">Rather not fill in a form?</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               <ContactRoute icon={MessageCircle} label="WhatsApp" value="Start a chat" href={buildWhatsAppUrl("Hello Primestone, I would like to ask about a project.")} external />
               <ContactRoute icon={Phone} label="Call us" value={COMPANY.phonePrimary} href={`tel:+${COMPANY.whatsappNumber}`} />
@@ -896,13 +896,13 @@ function ContactRoute({
 }) {
   return (
     <div className="flex items-center justify-center gap-3">
-      <Icon className="h-6 w-6 flex-shrink-0 text-[#ff9d4d]" aria-hidden="true" />
+      <Icon className="h-6 w-6 flex-shrink-0 text-[color:var(--ember)]" aria-hidden="true" />
       <div className="min-w-0 text-left">
-        <div className="font-semibold text-white">{label}</div>
+        <div className="font-semibold text-[color:var(--sand)]">{label}</div>
         <a
           href={href}
           {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="break-words text-[#ff9d4d] underline underline-offset-2 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="break-words text-[color:var(--ember)] underline underline-offset-2 hover:no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--sand)]"
         >
           {value}
         </a>
