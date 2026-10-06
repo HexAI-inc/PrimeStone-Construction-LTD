@@ -376,7 +376,7 @@ export default function QuotePage() {
                         onClick={() => goToStep(step.number)}
                         aria-current={isCurrent ? "step" : undefined}
                         aria-label={`Step ${step.number} of 4: ${step.title}`}
-                        className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all focus:outline-none focus:ring-2 focus:ring-orange-900 focus:ring-offset-2 ${
+                        className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all focus:outline-none focus:ring-2 focus:ring-[color:var(--sand)] focus:ring-offset-2 focus:ring-offset-[color:var(--ground)] ${
                           reached ? "border-[#c2571a] bg-[color:var(--ember-deep)] text-[color:var(--sand)]" : "border-white/30 bg-transparent text-[color:var(--sand-faint)]"
                         }`}
                       >
@@ -410,12 +410,12 @@ export default function QuotePage() {
             {status === "sent" ? (
               <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-8">
                 <div className="mb-6 flex items-start gap-3">
-                  <MessageCircle className="mt-1 h-7 w-7 flex-shrink-0 text-green-700" aria-hidden="true" />
+                  <MessageCircle className="mt-1 h-7 w-7 flex-shrink-0 text-[color:var(--ember)]" aria-hidden="true" />
                   <div>
-                    <h2 ref={sentHeadingRef} tabIndex={-1} className="text-2xl font-bold text-blue-900 focus:outline-none">
+                    <h2 ref={sentHeadingRef} tabIndex={-1} className="text-2xl font-bold text-[color:var(--sand)] focus:outline-none">
                       Your request is waiting in WhatsApp
                     </h2>
-                    <p className="mt-2 text-gray-700">
+                    <p className="mt-2 text-[color:var(--sand-dim)]">
                       It is not sent until you press send in WhatsApp. If the app did not open, use one of the options
                       below — nothing you typed has been lost.
                     </p>
@@ -561,7 +561,7 @@ export default function QuotePage() {
 
                       <div className="min-w-0">
                         <label htmlFor="field-company" className="mb-2 block text-sm font-medium text-[color:var(--sand-dim)]">
-                          Company <span className="font-normal text-gray-600">(optional)</span>
+                          Company <span className="font-normal text-[color:var(--sand-faint)]">(optional)</span>
                         </label>
                         <input
                           id="field-company"
@@ -604,7 +604,7 @@ export default function QuotePage() {
                               className="peer sr-only"
                             />
                             <span
-                              className={`flex h-full flex-col items-center gap-2 rounded-lg border-2 p-4 text-center transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-orange-900 peer-focus-visible:ring-offset-2 ${
+                              className={`flex h-full flex-col items-center gap-2 rounded-lg border-2 p-4 text-center transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-[color:var(--sand)] peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[color:var(--ground)] ${
                                 formData.projectType === type.id
                                   ? "border-[color:var(--ember)] bg-[#ff9d4d]/12"
                                   : "border-white/25 hover:border-white/60"
@@ -643,7 +643,7 @@ export default function QuotePage() {
                               className="peer sr-only"
                             />
                             <span
-                              className={`block rounded-lg border-2 p-4 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-orange-900 peer-focus-visible:ring-offset-2 ${
+                              className={`block rounded-lg border-2 p-4 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-[color:var(--sand)] peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-[color:var(--ground)] ${
                                 formData.projectSize === size.id
                                   ? "border-[color:var(--ember)] bg-[#ff9d4d]/12"
                                   : "border-white/25 hover:border-white/60"
@@ -738,7 +738,7 @@ export default function QuotePage() {
                               type="checkbox"
                               checked={formData.additionalServices.includes(service)}
                               onChange={() => toggleService(service)}
-                              className="h-4 w-4 flex-shrink-0 rounded border-gray-300 accent-[#c2571a] focus:outline-none focus:ring-2 focus:ring-orange-900 focus:ring-offset-2"
+                              className="h-4 w-4 flex-shrink-0 rounded border-white/40 accent-[#c2571a] focus:outline-none focus:ring-2 focus:ring-[color:var(--sand)] focus:ring-offset-2 focus:ring-offset-[color:var(--ground)]"
                             />
                             <span className="min-w-0 text-sm text-[color:var(--sand-dim)]">{service}</span>
                           </label>
@@ -800,22 +800,22 @@ export default function QuotePage() {
                       <h3 className="mb-4 font-semibold text-[color:var(--sand)]">What happens when you press send</h3>
                       <ul className="space-y-3 text-sm text-[color:var(--sand-dim)]">
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-700" aria-hidden="true" />
+                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--ember)]" aria-hidden="true" />
                           <span>WhatsApp opens with these details already written out.</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-700" aria-hidden="true" />
+                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--ember)]" aria-hidden="true" />
                           <span>Nothing reaches us until you press send inside WhatsApp.</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-700" aria-hidden="true" />
+                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--ember)]" aria-hidden="true" />
                           <span>
                             We read messages {COMPANY.hours[0].days} {COMPANY.hours[0].time} and {COMPANY.hours[1].days}{" "}
                             {COMPANY.hours[1].time}, {COMPANY.timezone}.
                           </span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-700" aria-hidden="true" />
+                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--ember)]" aria-hidden="true" />
                           <span>If WhatsApp will not open, you can copy the request or email it instead.</span>
                         </li>
                       </ul>
