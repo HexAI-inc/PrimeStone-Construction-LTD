@@ -471,8 +471,8 @@ export default function HomePage() {
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="tel:+2203636351" className="btn-secondary text-lg px-8 py-4">
-                  Call: +220 363 6351
+                <Link href="tel:+220833636351" className="btn-secondary text-lg px-8 py-4">
+                  Call: +220 833 636 351
                 </Link>
               </motion.div>
             </div>

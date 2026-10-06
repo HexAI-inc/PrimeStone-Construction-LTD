@@ -26,8 +26,8 @@ export default function TeamPage() {
         
       ],
       contact: {
-        email: "hairy@primestone.gm",
-        phone: "+220 363 6351",
+        email: "oumiehairy@gmail.com",
+        phone: "+220 833 636 351",
         linkedin: "#",
       },
       quote: "Building excellence isn't just about structures; it's about building trust and relationships.",

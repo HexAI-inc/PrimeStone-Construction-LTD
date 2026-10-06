@@ -40,11 +40,11 @@ export default function Navigation() {
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <Phone size={14} />
-                <span className="text-sm">+220 363 6351</span>
+                <span className="text-sm">+220 833 636 351</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={14} />
-                <span className="text-sm">info@primestone.gm</span>
+                <span className="text-sm">oumiehairy@gmail.com</span>
               </div>
             </div>
             <div className="hidden md:block">

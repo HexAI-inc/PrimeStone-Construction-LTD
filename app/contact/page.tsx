@@ -53,14 +53,14 @@ export default function ContactPage() {
     {
       icon: <Phone className="w-6 h-6 text-orange-600" />,
       title: "Phone",
-      details: ["+220 363 6351", "+220 783 4351"],
-      action: "tel:+2203636351",
+      details: ["+220 833 636 351", "+220 877 834 351"],
+      action: "tel:+220833636351",
     },
     {
       icon: <Mail className="w-6 h-6 text-orange-600" />,
       title: "Email",
-      details: ["info@primestone.gm", "projects@primestone.gm"],
-      action: "mailto:info@primestone.gm",
+      details: ["oumiehairy@gmail.com"],
+      action: "mailto:oumiehairy@gmail.com",
     },
     {
       icon: <MapPin className="w-6 h-6 text-orange-600" />,
@@ -287,11 +287,11 @@ export default function ContactPage() {
             <h3 className="text-xl font-bold text-red-800 mb-2">Emergency Construction Services</h3>
             <p className="text-red-700 mb-4">For urgent construction emergencies, call our 24/7 hotline</p>
             <a
-              href="tel:+2203636351"
+              href="tel:+220833636351"
               className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
             >
               <Phone className="w-5 h-5 mr-2" />
-              Emergency: +220 363 6351
+              Emergency: +220 833 636 351
             </a>
           </AnimatedSection>
         </div>

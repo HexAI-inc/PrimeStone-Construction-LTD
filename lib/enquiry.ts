@@ -10,11 +10,11 @@
 export const COMPANY = {
   name: "Primestone Construction Company Ltd.",
   /** Digits only, international format, for wa.me links. */
-  whatsappNumber: "2203636351",
-  phonePrimary: "+220 363 6351",
-  phoneSecondary: "+220 783 4351",
-  emailGeneral: "info@primestone.gm",
-  emailProjects: "projects@primestone.gm",
+  whatsappNumber: "220833636351",
+  phonePrimary: "+220 833 636 351",
+  phoneSecondary: "+220 877 834 351",
+  emailGeneral: "oumiehairy@gmail.com",
+  emailProjects: "oumiehairy@gmail.com",
   address: "Turntable, Brusubi, The Gambia",
   hours: [
     { days: "Monday to Friday", time: "8:00 AM – 6:00 PM" },

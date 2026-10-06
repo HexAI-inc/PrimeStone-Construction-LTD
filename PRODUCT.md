@@ -51,8 +51,8 @@ This is the company's chosen position and the claim all future work should serve
 - **Name:** Primestone Construction Company Ltd. (capitalization unresolved — see above).
 - **Logo:** `public/images/primestone-logo.png` — the only genuine brand asset in the repository.
 - **Contact details — confirmed real and current, preserve exactly:**
-  - Phone: +220 363 6351 and +220 783 4351
-  - Email: info@primestone.gm and projects@primestone.gm
+  - Phone: +220 833 636 351 and +220 877 834 351
+  - Email: oumiehairy@gmail.com
   - Address: Turntable, Brusubi, The Gambia
   - Hours: Mon–Fri 8:00 AM – 6:00 PM; Sat 9:00 AM – 4:00 PM
 - **Footer credit:** "Developed by HexAI".
