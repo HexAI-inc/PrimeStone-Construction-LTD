@@ -29,7 +29,7 @@ export default function SiteEnd({ hideQuoteLink = false }: { hideQuoteLink?: boo
 
       <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-base text-[color:var(--sand-dim)]">
         <a href={`tel:+${COMPANY.whatsappNumber}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phonePrimary}</a>
-        <a href="tel:+2207834351" className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
+        <a href="tel:+220877834351" className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
         <a href={`mailto:${COMPANY.emailGeneral}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailGeneral}</a>
       </div>
 

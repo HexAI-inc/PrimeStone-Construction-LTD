@@ -59,12 +59,11 @@ export default function ContactPage() {
           <div>
             <div className="text-sm uppercase tracking-widest text-[color:var(--sand-faint)]">Phone</div>
             <a href={`tel:+${COMPANY.whatsappNumber}`} className="mt-1 block text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phonePrimary}</a>
-            <a href="tel:+2207834351" className="block text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
+            <a href="tel:+220877834351" className="block text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
           </div>
           <div>
             <div className="text-sm uppercase tracking-widest text-[color:var(--sand-faint)]">Email</div>
             <a href={`mailto:${COMPANY.emailGeneral}`} className="mt-1 block break-all text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailGeneral}</a>
-            <a href={`mailto:${COMPANY.emailProjects}`} className="block break-all text-lg text-[color:var(--sand)] underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailProjects}</a>
           </div>
           <div>
             <div className="text-sm uppercase tracking-widest text-[color:var(--sand-faint)]">Open</div>
@@ -105,7 +104,7 @@ export default function ContactPage() {
               </div>
               <div className="min-w-0">
                 <label htmlFor="phone" className={label}>Phone or WhatsApp number</label>
-                <input id="phone" type="tel" name="phone" value={formData.phone} onChange={handleChange} autoComplete="tel" inputMode="tel" maxLength={32} className={field} placeholder="+220 363 6351" />
+                <input id="phone" type="tel" name="phone" value={formData.phone} onChange={handleChange} autoComplete="tel" inputMode="tel" maxLength={32} className={field} placeholder="+220 833 636 351" />
               </div>
               <div className="min-w-0">
                 <label htmlFor="service" className={label}>What is it about?</label>

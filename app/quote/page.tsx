@@ -551,7 +551,7 @@ export default function QuotePage() {
                           aria-invalid={errors.phone ? true : undefined}
                           aria-describedby={describedBy("phone", "hint-phone")}
                           className={inputClass("phone")}
-                          placeholder="+220 363 6351"
+                          placeholder="+220 833 636 351"
                         />
                         {errors.phone && <FieldError id="error-phone">{errors.phone}</FieldError>}
                         <p id="hint-phone" className="mt-2 text-sm text-[color:var(--sand-faint)]">

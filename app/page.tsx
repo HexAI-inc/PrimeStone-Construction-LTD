@@ -73,7 +73,7 @@ export default function Home() {
           {panel.id === "people" && (
             <div className="mt-9 flex flex-wrap gap-x-10 gap-y-3 text-lg text-[color:var(--sand-dim)]">
               <a href={`tel:+${COMPANY.whatsappNumber}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phonePrimary}</a>
-              <a href="tel:+2207834351" className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
+              <a href="tel:+220877834351" className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.phoneSecondary}</a>
               <a href={`mailto:${COMPANY.emailGeneral}`} className="underline-offset-4 hover:text-[color:var(--ember)] hover:underline">{COMPANY.emailGeneral}</a>
             </div>
           )}

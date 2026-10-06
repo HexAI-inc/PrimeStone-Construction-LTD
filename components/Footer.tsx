@@ -102,8 +102,8 @@ export default function Footer() {
               <div className="space-y-4">
                 {[
                   { icon: MapPin, text: "Turntable, Brusubi, The Gambia" },
-                  { icon: Phone, text: "+220 363 6351" },
-                  { icon: Mail, text: "info@primestone.gm" },
+                  { icon: Phone, text: "+220 833 636 351" },
+                  { icon: Mail, text: "oumiehairy@gmail.com" },
                   { icon: Clock, text: "Mon - Fri: 8:00 AM - 6:00 PM" },
                 ].map((item, index) => (
                   <motion.div key={index} whileHover={{ x: 5 }} className="flex items-center space-x-3">
